@@ -1,0 +1,13 @@
+<?php
+$this->pageTitle="Limesurvey Points de distribution";
+
+$i = 0; $x="";
+foreach ($josPdds as $josPdd):
+			$x.= $josPdd['JosPdd']['PDDINo'] .";"; 
+			$x.= $josPdd['JosPdd']['PDDTexte']; 
+			$x.="<br/>";
+endforeach; 
+echo $x;
+
+		 ?>
+
