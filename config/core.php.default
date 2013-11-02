@@ -296,16 +296,19 @@
  *
  */
 	Cache::config('default', array('engine' => 'File'));
-		/* some main variable definitions*/
 	
-	define('RACINEDIR',"/repertoireinstallation");
-	define('SITENAME',"le nom de votre site");
+	/* some main variable definitions*/
 	
-	define('SITE',"nom complet site");
-	define('CHEMIN',"/cake/");
-	define('SERVEUR',"www.votre_site.ch");//name of the database
-	define('SERVEURMAIL',"votre_serveur_mail.ch");//name of the database
-	define('ADMINMAIL',"email_administrateur");//name of the database
+	define('RACINEDIR',"/repertoireinstallation"); //path, no trail
+	define('CHEMIN',"/cake/"); //path with trail
+	define('SITENAME',"le nom de votre site"); //the name of the site (no special chars)
+	define('SITE',"nom complet site"); //complete name
+	define('SERVEUR',"www.votre_site.ch");//name of the web server
+	define('SERVEURMAIL',"votre_serveur_mail.ch");//name of the mail server
+	define('ADMINMAIL',"email_administrateur");//administrator's mali
+	define('LOCALCSS',"http://domain/some_url.css");//local css
+	define('FAVICON',"http://domain/favicon.ico");//SHORTCUT ICON
+	define('LOGO',"http://domain/logo.png");//website LOGO
 	
 	/*
 	 * todo: check if used, if yes replace with 			$hash=Configure::read('Security.salt');
