@@ -57,7 +57,7 @@ echo $javascript->link('scrolltopcontrol');
 </div>
 <div id="fond">
   <div id="pied">
-    <p><?php echo COPYRIGHT; ?</p>
+    <p><?php echo COPYRIGHT; ?></p>
   </div>
 </div>
 </body></html>

@@ -59,16 +59,11 @@ if($session->read('Auth.User.role')=="administrator") { ?>
 		<div id="header">
 		</div>
 		<div id="content">
-
 			<?php #$session->flash(); ?>
-
 			<?php echo $content_for_layout; ?>
-
 		</div>
-
 	</div>
 	<?php #echo $cakeDebug; ?>
-	
 	    <div style="clear:both"></div>
 </div>
 <div id="fond">
