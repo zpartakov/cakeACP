@@ -3,7 +3,7 @@
  * Generic CSS for CakePHP
  *
  * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
- * Copyright 2005-2010, Cformake Software Foundation, Inc. (http://cakefoundation.org)
+ * Copyright 2005-2010, Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
  * Licensed under The MIT License
  * Redistributions of files must retain the above copyright notice.
@@ -28,6 +28,9 @@ body {
 	margin: 0;
 font-family: "frutiger linotype", "lucida grande", "verdana", sans-serif;
 font-size: 11px;
+margin-left: 10px;
+margin-top: 3px;
+
 }
 a {
 	color: #003d4c;
@@ -98,16 +101,7 @@ ul, li {
 	color: #333;
 	padding: 10px 20px 40px 20px;
 	overflow: auto;
-	margin: 10px 20px 40px 20px;
 }
-
-
-#leftnav { 
-
-	overflow: auto;
-	margin: 3px 0px 0px 20px;
-}
-
 #footer {
 	clear: both;
 	padding: 6px 10px;
@@ -215,7 +209,7 @@ div.paging span a {
 dl {
 	line-height: 2em;
 	margin: 0em 0em;
-	/*width: 60%;*/
+	width: 60%;
 }
 dl .altrow {
 	background: #f4f4f4;
@@ -224,13 +218,11 @@ dt {
 	font-weight: bold;
 	padding-left: 4px;
 	vertical-align: top;
-	width: 400px;
 }
 dd {
-	margin-left: 20em;
+	margin-left: 10em;
 	margin-top: -2em;
 	vertical-align: top;
-	width: 40%;
 }
 
 /** Forms **/
@@ -266,8 +258,8 @@ fieldset fieldset div {
 }
 form div {
 	clear: both;
-	/*margin-bottom: 1em;
-	padding: .5em;*/
+	margin-bottom: 1em;
+	padding: .5em;
 	vertical-align: text-top;
 }
 form .input {
@@ -292,15 +284,11 @@ label {
 	margin-bottom:3px;
 }
 input, textarea {
-	/*clear: both;
+	clear: both;
 	font-size: 140%;
 	padding: 1%;
-	width:98%;*/
+	width:98%;
 }
-textarea {
-	width: 600px;
-	height: 120px;
-	}
 select {
 	clear: both;
 	font-size: 120%;

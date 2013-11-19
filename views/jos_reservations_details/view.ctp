@@ -21,6 +21,11 @@
 			<?php echo $josReservationsDetail['JosReservationsDetail']['npers']; ?>
 			&nbsp;
 		</dd>
+				<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Voiture'); ?></dt>
+		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
+			<?php echo $josReservationsDetail['JosReservationsDetail']['voiture']; ?>
+			&nbsp;
+		</dd>
 		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Rem'); ?></dt>
 		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
 			<?php echo $josReservationsDetail['JosReservationsDetail']['rem']; ?>

@@ -10,6 +10,7 @@ App::import('Lib', 'functions'); //imports app/libs/functions
 //datas
 $ladate=$_POST['ladate'];
 $np=$_POST['np'];
+$voiture=$_POST['voiture'];
 $remarques=$_POST['remarques'];
 $remarques=addslashes($remarques);
 $utilisateur=$session->read('Auth.User.username');
@@ -28,9 +29,9 @@ if(!$checkUser) {
 ###### on ecrit dans la db #########
 $query= "
 		INSERT INTO `jos_demiejournees_details`
-		(`id`, `date`, `user`, `npers`, `rem`)
+		(`id`, `date`, `user`, `npers`, `voiture`, `rem`)
 		VALUES
-		(NULL, '$ladate', '$utilisateur', '$np', '$remarques')
+		(NULL, '$ladate', '$utilisateur', '$np', '$voiture', '$remarques')
 		";
 		#echo $query; exit;//tests 
 		$db=mysql_query($query);
@@ -44,24 +45,36 @@ $query= "
 	$lemail=mysql_result($checkUser,0,'email');
 	$lenom=mysql_result($checkUser,0,'name');
 	$from=ADMINMAIL;
-	$obj="Réservation demi-journée " .SITENAME ." pour ";
-	
+	$obj="Réservation demi-journée " .SITENAME;
+	/*
+	echo " pour ";
 	if(preg_match("/18:00:00/",$ladate)) {
-	$obj.= " une livraison " ;
-}
+		$obj.= " une livraison " ;
+	}
+	*/
 
+	if(preg_match("/ 08:00:00$/",$ladate))	{
+		$heure="9h - 13h";
+	} elseif(preg_match("/ 14:00:00$/",$ladate))	{
+		$heure="après-midi";
+	}	elseif(preg_match("/ 17:00:00$/",$ladate))	{
+		$heure="16h à 20h";
+	} elseif(preg_match("/ 18:00:00$/",$ladate))	{
+		$heure="18h à 22h";
+	} else {
+		$heure="";
+	}
 	
-	$obj.= " le " .datefr_short($ladate);
+	$obj.= " le " .datefr($ladate) .", " .$heure;
 	$headers ='From: ' .$from ."\n";
 	$headers .='Reply-To: ' .$from ."\n";
 	$headers .= "Content-type: text/html; charset= UTF-8\n";
-	
-	
-	if(preg_match("/18:00:00/",$ladate)) {
-		$ladatet=preg_replace("/18:00:00/","13:00", $ladate);
-	} else {
-		$ladatet=preg_replace("/00:00/","00", $ladate);
-	}
+
+if($voiture==0) {
+	$voiture="non";
+} elseif($voiture==1) {
+	$voiture="oui";
+}
 	
 	$txt="
 <img style=\"float: left\" src=\"http://p2r.ch/images/reminder.jpg\">
@@ -70,8 +83,11 @@ Bonjour, $lenom
 
 Votre inscription pour une demi-journée à coller sur votre frigo:
 
-<strong>Date: " .datefr_short($ladatet) ."</strong>
+<strong>Date: " .datefr($ladate) .", " .$heure ."</strong>
 Nombre de personnes: $np
+Je propose un co-voiturage: $voiture
+
+
 Remarques: $remarques
 
 A bientôt!
@@ -104,5 +120,5 @@ email: " .$lemail;
 	
 #on redirige l'usager sur la liste des demi-journées	
 
-	header("Location: /cake/demijournees");	
+	header("Location: ".CHEMIN .'demijournees/'');	
 	?>

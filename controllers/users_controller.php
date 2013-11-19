@@ -9,12 +9,12 @@ class UsersController extends AppController {
 	var $paginate = array(
         'limit' => 300,
         'order' => array(
-            'User.email' => 'asc'
+            'User.username' => 'asc'
         )
     );
 
   function beforeFilter() {
-		$this->Auth->allow('login','logout', 'passwordreminder', 
+		$this->Auth->allow('login','login_adherent','logout', 'passwordreminder', 
 				'renvoiemail', 'confirmation');
 		
 		$this->Auth->autoRedirect = false;
@@ -209,6 +209,12 @@ class UsersController extends AppController {
 			$this->redirect(array('controller'=>'jos_demiejournees', 'action' => 'demijournees'));
 			}
 	}
+	function login_adherent() {
+		/*
+		 * a special login with dolibarr
+		 */
+	}
+	
 
     function logout()
     {
@@ -393,6 +399,11 @@ class UsersController extends AppController {
 		$this->User->recursive = 0;
 		$this->set('users', $this->paginate($this->User, $this->AlaxosFilter->get_filter()));
 		
+	}
+	
+	function tiers_adherent()
+	{
+	
 	}
 
 }

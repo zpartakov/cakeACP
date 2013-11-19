@@ -1,7 +1,7 @@
 <?php
 class User extends AppModel {
 	var $name = 'User';
-	var $displayField = 'email';
+	var $displayField = 'username';
 	var $validate = array(
 		'username' => array(
 			'notempty' => array(

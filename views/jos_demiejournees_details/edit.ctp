@@ -11,7 +11,6 @@
 * See COPYRIGHT.php for copyright notices and details.
 */
 $this->pageTitle = 'Modifier une inscription'; 
-
 ?>
 <div class="josDemiejourneesDetails form">
 <?php echo $form->create('JosDemiejourneesDetail');?>
@@ -21,10 +20,22 @@ $this->pageTitle = 'Modifier une inscription';
 		echo $form->input('id');
 		echo $form->input('date');
 		echo $form->input('user', array('label'=>'Cocagnard/e'));
-
+		
+		//echo $this->data['JosDemiejourneesDetail']['ok']; exit;
+		
+		if($this->data['JosDemiejourneesDetail']['ok']==1){
+			echo $form->input('ok', array('legend'=>'Demi-journée faite?', 'type' => 'checkbox', 'checked'=>true, 'value'=>1));
+				
+		} else {
+		//	echo $form->input('ok', array('legend'=>'Demi-journée faite?', 'type' => 'checkbox', 'options' => array(1=>'Oui', 0=>'Non')));
+			echo $form->input('ok', array('legend'=>'Demi-journée faite?', 'type' => 'checkbox', 'value'=>'0'));
+		}
 		echo $form->input('npers', array('label'=>'Nombre de personnes'));
+		echo $form->input('voiture', array('style'=>'width: 30px','label'=>'Co-voiturage proposé? (1=oui, 0=non)'));
 		echo $form->input('rem', array('label'=>'Remarques'));
-	?>
+		
+		
+		?>
 	</fieldset>
 <?php echo $form->end('Enregistrer');?>
 </div>

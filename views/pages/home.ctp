@@ -14,6 +14,9 @@ if($session->read('Auth.User.role')=="administrator") {
 
 <h2>Demi-journées</h2>
 <!--<li><a href="<? echo RACINEDIR;?>/jos_demiejournees_details/liste">Programmation des demi-journées</a></li>-->
+<li><a href="<? echo RACINEDIR;?>/demijournees/">Inscriptions membres</a></li>
+			<li><a href="<? echo RACINEDIR;?>/listeattentes/">Liste d'attente</a></li>
+
 <li><a href="<? echo RACINEDIR;?>/jos_demiejournees_details/correction">Correction des demi-journées</a></li>
 <li><a href="<? echo RACINEDIR;?>/jos_demiejournees_default_schedules/">Valeurs par défaut</a></li>
 
@@ -31,7 +34,7 @@ if($session->read('Auth.User.role')=="administrator") {
 } elseif($session->read('Auth.User.role')=="member") {
 	?>
 	<li><a href="<?php  echo RACINEDIR ?>/jos_demiejournees/demijournees">Demi-Journées</a></li>
-	<li><a href="<?php  echo RACINEDIR ?>/users/coordonnees?idx=<?php echo $session->read('Auth.User.id');?>">Coordonnées</a></li>
+	<!--<li><a href="<?php  echo RACINEDIR ?>/users/coordonnees?idx=<?php echo $session->read('Auth.User.id');?>">Coordonnées</a></li>  -->
 	<?php 
 } else {
 	?>

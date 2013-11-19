@@ -33,7 +33,20 @@
 	echo $javascript->link('scrolltopcontrol');
 ?>
 </head>
-
+<!-- 
+/**
+* @version        v1.0 28.05.2010, rev 19.11.13$
+* @package        Cocagne/p2r
+" @author 		  fradeff@akademia.ch
+* @copyright      Copyright (C) 2010 - 2014 Open Source Matters. All rights reserved.
+* @license        GNU/GPL, see LICENSE
+* Cocagne/p2r is free software. This version may have been modified pursuant
+* to the GNU General Public License, and as distributed it includes or
+* is derivative of works licensed under the GNU General Public License or
+* other free or open source software licenses.
+* See http://www.gnu.org/copyleft/gpl.html for copyright notices and details.
+*/
+ -->
 <body>
 <a href="<?php echo CHEMIN; ?>">
 <img src="<?php echo LOGO; ?>" alt="Logo" title="Logo" width="30%">

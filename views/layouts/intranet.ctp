@@ -3,7 +3,8 @@
  * a special layout for members not admin
  * 
  */
-?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<?php echo $html->charset(); ?>
@@ -23,12 +24,26 @@ echo $javascript->link('jquery.js');
 echo $javascript->link('scrolltopcontrol');
 ?>
 </head>
+<!-- 
+/**
+* @version        v1.0 28.05.2010, rev 19.11.13$
+* @package        Cocagne/p2r
+" @author 		  fradeff@akademia.ch
+* @copyright      Copyright (C) 2010 - 2014 Open Source Matters. All rights reserved.
+* @license        GNU/GPL, see LICENSE.php
+* Cocagne is free software. This version may have been modified pursuant
+* to the GNU General Public License, and as distributed it includes or
+* is derivative of works licensed under the GNU General Public License or
+* other free or open source software licenses.
+* See http://www.gnu.org/copyleft/gpl.html for copyright notices and details.
+*/
+ -->
 <body>
 <div id="page">
 	<div id="image1" style="margin-bottom: 30px">
 		<a href="<?php echo CHEMIN; ?>">
 		<img src="<?php echo LOGO; ?>" alt="Logo" title="Logo">
-		<span style="margin-left: 30px; vertical-align: top; font-size: 6em;">Intranet</span></a>
+		</a>
 	</div>
 	<?php 
 	/*
@@ -38,13 +53,20 @@ echo $javascript->link('scrolltopcontrol');
 		echo $this->Html->link('Home admin', array('controller' => 'pages', 'action' => 'display', 'home'), array('style'=>'margin-top: 20px; font-size: 2.5em'));
 	}
 	?>
-	<div style="position: absolute; top: 12%; right: 18%"><a href="/">Retour au site public</a></div>
+
 	<!-- menu -->
+
 	<ul id="principal">
-		<li><?php echo $this->Html->link('Demi-journées', '/demijournees'); ?></li>
+<!-- 			<li><?php echo $this->Html->link('Demi-journées', '/demijournees'); ?></li>
 		<li><?php echo $this->Html->link('Mes coordonnées', '/coordonnees'); ?></li>
-		<li><?php echo $this->Html->link('Logout', array('controller' => 'users', 'action' => 'logout')); ?></li>
-	</ul>
+ -->			
+ <li><a href="/">Retour au site public</a></li>
+ <li>&nbsp;</li>
+ <li>&nbsp;</li>
+ <li>&nbsp;</li>
+ <li><?php echo $this->Html->link('Logout', array('controller' => 'users', 'action' => 'logout')); ?></li>
+ </ul>
+
 	<div id="texte">
 		<?php 
 		/*

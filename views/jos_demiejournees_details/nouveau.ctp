@@ -16,13 +16,14 @@ $date=$_GET['date'];
 $user=$_GET['user'];
 $npers=$_GET['data']['npers'];
 $rem=$_GET['data']['rem'];
+$voiture=$_GET['data']['voiture'];
 
 if($date&&$user&&$npers) {
 
 $sql="
 INSERT INTO `jos_demiejournees_details` 
-(`id`, `date`, `user`, `npers`, `rem`) VALUES
-('', '" .$date ."', '" .$user ."', " .$npers .", '".$rem ."');";
+(`id`, `date`, `user`, `npers`, `voiture`, `rem`) VALUES
+('', '" .$date ."', '" .$user ."', " .$npers ."," .$voiture .", '".$rem ."');";
 #echo $sql; exit;
 #do and check sql
 $sql=mysql_query($sql);
@@ -67,6 +68,7 @@ echo "</select>";
 			echo "</td>
 		  </tr>
 	  </table>";
+		echo $form->input('voiture', array('label'=>"Co-voiturage proposé? (1=oui, 0=non)",'value'=>'0','style' => 'width: 50px;'));
 		echo $form->input('npers', array('label'=>"Nombre de personnes",'value'=>'1','style' => 'width: 50px;'));
 		echo $form->input('rem', array('label'=>"Remarques"));
 ?>

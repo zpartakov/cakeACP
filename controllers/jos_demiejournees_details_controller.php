@@ -51,11 +51,9 @@ class JosDemiejourneesDetailsController extends AppController {
 			$this->redirect(array('action'=>'index'));
 		}
 		if (!empty($this->data)) {
+			//echo $this->data['JosDemiejourneesDetail']['ok']; exit;
 			if ($this->JosDemiejourneesDetail->save($this->data)) {
-				#$this->Session->setFlash(__('The JosDemiejourneesDetail has been saved', true));
-#				$this->redirect(array('action'=>'index'));
-$this->redirect($_SERVER["HTTP_REFERER"]);
-
+				$this->redirect($_SERVER["HTTP_REFERER"]);
 			} else {
 				$this->Session->setFlash(__('The JosDemiejourneesDetail could not be saved. Please, try again.', true));
 			}
@@ -89,7 +87,10 @@ function liste() {
 		
 	}
 	
-	function metajourplaces() //fonction pour mettre a jour automatiquement le nombr de personnes pour une date donnee
+	function metajourplaces() 
+	/*
+	 *fonction pour mettre a jour automatiquement le nombr de personnes pour une date donnee 
+	 */
 	{
 					eject_non_admin(); //on autorise pas les non-administrateurs
 		
@@ -110,6 +111,33 @@ function liste() {
 			}
 	}
 
+	
+	
+	
+	function okdj()
+	/*
+	 *fonction pour valider (oui/non) la participation d'un membre à une demi-journée
+	*/
+	{
+		eject_non_admin(); //on autorise pas les non-administrateurs
+	
+		$id=$_GET['id'];
+		$val=$_GET['val'];
+		//echo "Date: " .$date ." - npers: " .$val; 		exit; //tests
+		$sqlo="UPDATE jos_demiejournees_details 
+		SET ok = '" .$val ."'
+		WHERE id=" .$id;
+		#echo "<br>".$sqlo; exit;
+			
+		$sql=mysql_query($sqlo);
+		if(!$sql) {
+			echo "SQL error with query: " .$sqlo ."<br>".mysql_error(); //sql problem
+		} else {
+			header("Location: " .$_SERVER["HTTP_REFERER"]); //return to previous page
+			exit();
+		}
+	}
+	
 function correction() {
 				eject_non_admin(); //on autorise pas les non-administrateurs
 	

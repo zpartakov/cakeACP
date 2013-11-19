@@ -3,6 +3,16 @@
  * functions out of php core
  * 
  * */
+function verifie_liste_attente_unique($user_id) {
+	$sql="SELECT * FROM listeattentes WHERE user_id=".$user_id;
+	$sql=mysql_query($sql);
+	if(mysql_num_rows($sql)>0) {
+		echo "Désolé, vous êtes déjà inscrit sur la liste d'attente.";
+		echo "<br><a href=\"".CHEMIN."\">Retour</a>";
+		exit;
+	}
+}
+
 function note($note){
 	//echo $note;
 	$prioritecolor=array("white","#FFD5D5","#FAB1B1","#F87676","#CDF3CD","#A5F9A5","#71F871");
@@ -254,6 +264,15 @@ function date_mysql_to_timestamp($date) {
 	$ladate=explode("-",$date);
 	return mktime(0, 0,0,$ladate[2],$ladate[3],$ladate[1] );
 }
+
+function date_long_mysql_to_timestamp($date) {
+	#if (!preg_match('/(\d\d\d\d)-(\d\d)-(\d\d) (\d\d):(\d\d):(\d\d)/',$date,$r)){
+	#return false;
+	#}
+	$heure=explode(" ",$date);
+	$ladate=explode("-",$date);
+	return mktime($heure[0], $heure[1],0,$ladate[2],$ladate[3],$ladate[1] );
+}
 function verifieDate($date) {
 	#2007-06-22
 	#checkdate(m-d-y);
@@ -390,6 +409,7 @@ function datefr($date_sql){
 		}
 
 		$heure = $heure_sql[0]; // La variable de l'heure
+		
 		$minutes = $heure_sql[1]; // La variable des minutes
 		$secondes = $heure_sql[2]; // la variable des secondes
 
@@ -401,7 +421,14 @@ function datefr($date_sql){
 
 		#  $date = "Le $nom_jour $num_jour $nom_mois $annee"; // On forme la date
 		$date = "$nom_jour $num_jour $nom_mois $annee"; // On forme la date
-		$date_fr= $date;
+		if($heure=="08") {
+			$ajout="9h - 13h";
+		} elseif($heure=="17") {
+			$ajout="16h à 20h";
+		} elseif($heure=="18") {
+			$ajout="18h à 22h";
+		}
+		$date_fr= $date .", " .$ajout;
 
 		//retour de cette variable
 		return $date_fr;
@@ -534,5 +561,9 @@ function datefr($date_sql){
 		}
 		$oeufs=mysql_result($sql,0,'oeufs');
 		echo $oeufs;
+	}
+	
+	function natel_admin() {
+		echo "<p>En cas de désistement dans les 24h qui précèdent, merci de téléphoner au coordinateur: " .ADMIN_NATEL ."</p>";
 	}
 ?>

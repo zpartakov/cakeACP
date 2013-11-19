@@ -1,7 +1,10 @@
 <div class="josDemiejournees index">
 <h2><?php __('JosDemiejournees');?></h2>
+<li><?php echo $this->Html->link(__('Nouvelle demi-journée \(entrée manuelle\))', true), array('action' => 'add')); ?></li>
 <p>
 <?php
+App::import('Lib', 'functions'); //imports app/libs/functions
+
 echo $paginator->counter(array(
 'format' => __('Page %page% of %pages%, showing %current% records out of %count% total, starting on record %start%, ending on %end%', true)
 ));
@@ -57,7 +60,7 @@ foreach ($josDemiejournees as $josDemiejournee):
 
 		<td>
 			<?php 
-			echo mysql_DateTime($josDemiejournee['JosDemiejournee']['date']); ?>
+			echo datefr_short($josDemiejournee['JosDemiejournee']['date']); ?>
 		</td>
 
 		<td>
@@ -66,7 +69,11 @@ foreach ($josDemiejournees as $josDemiejournee):
 		<td>
 			<?php changestatutDJ($josDemiejournee['JosDemiejournee']['id'],$josDemiejournee['JosDemiejournee']['statut']); ?>
 		</td>
-
+<td class="actions">
+			<?php echo $this->Html->link(__('View', true), array('action' => 'view', $josDemiejournee['JosDemiejournee']['id'])); ?>
+			<?php echo $this->Html->link(__('Edit', true), array('action' => 'edit', $josDemiejournee['JosDemiejournee']['id'])); ?>
+			<?php echo $this->Html->link(__('Delete', true), array('action' => 'delete', $josDemiejournee['JosDemiejournee']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $josDemiejournee['JosDemiejournee']['id'])); ?>
+		</td>
 
 	</tr>
 <?php 
@@ -79,4 +86,9 @@ endforeach; ?>
  | 	<?php echo $paginator->numbers();?>
 	<?php echo $paginator->next(__('next', true).' >>', array(), null, array('class' => 'disabled'));?>
 </div>
-
+<div class="actions">
+	<h3><?php __('Actions'); ?></h3>
+	<ul>
+		<li><?php echo $this->Html->link(__('Nouvelle demi-journée \(entrée manuelle\))', true), array('action' => 'add')); ?></li>
+	</ul>
+</div>

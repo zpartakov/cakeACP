@@ -19,8 +19,11 @@ if($session->read('Auth.User.role')=="administrator") {
 
 	<li><a href="<? echo RACINEDIR;?>/jos_demiejournees_details/correction">Demi-journées</a>
 		<ul class="sousMenu">
+			<li><a href="<? echo RACINEDIR;?>/demijournees/">Inscriptions membres</a></li>
+					<li><a href="<? echo RACINEDIR;?>/jos_demiejournees/add">Ajout demi-journée</a></li>
+		
+			<li><a href="<? echo RACINEDIR;?>/listeattentes/">Liste d'attente</a></li>
 			<li><a href="<? echo RACINEDIR;?>/jos_demiejournees">Programmation</a></li>
-			<li><a href="<? echo RACINEDIR;?>/jos_demiejournees_details/correction">Corriger</a></li>
 			<li><a href="<? echo RACINEDIR;?>/jos_demiejournees_default_schedules/">Valeurs semaine par défaut</a></li>
 			<li><a href="<? echo RACINEDIR;?>/cocagne_defaults/">Valeurs par défaut</a></li>
 			<li><a href="<? echo RACINEDIR;?>/jos_demiejournees_details/export">Exporter</a></li>
@@ -43,7 +46,6 @@ if($session->read('Auth.User.role')=="administrator") {
 		<!-- Cocagnards -->
 	<li><a href="<? echo RACINEDIR;?>/users/">Coopérateurs</a>
 	<ul class="sousMenu">
-			<li><a href="<? echo RACINEDIR;?>/livreurs">livreurs</a></li>
 			<li><a href="<? echo RACINEDIR;?>/users/export">Export</a></li>
 			<li><a href="http://webmail.pdr.ch/">@webmail</a></li>	
 	</ul>

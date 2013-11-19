@@ -6,6 +6,7 @@
 		echo $form->input('date');
 		echo $form->input('user');
 		echo $form->input('npers');
+		echo $form->input('voiture');
 		echo $form->input('rem');
 	?>
 	</fieldset>

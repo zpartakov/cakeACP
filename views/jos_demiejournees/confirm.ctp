@@ -1,3 +1,15 @@
+<style>
+td {
+padding: 3px;
+border: thin solid;
+}
+</style>
+<script>
+function goBack()
+  {
+  window.history.go(-1)
+  }
+</script>
 <?php
 /*
  * confirmation of registration step 1, display user a list of items
@@ -30,17 +42,11 @@ $sqlDoublon=mysql_num_rows(mysql_query($sqlDoublon));
 if($sqlDoublon>0){
 echo "Vous êtes déjà inscrit pour cette demi-journée!<br>";
 echo "<br><a href=\"desinscription?date='" .$ladate ."'\">Me désinscrire</a>";
-echo "<br><br><a href=\"http://" .$_SERVER["HTTP_HOST"] ."/cms/static/demijournees/index.php?utilisateur=" .$utilisateur ."\">Retour aux inscriptions</a>";
+echo "<br><br><a href=\"http://" .$_SERVER["HTTP_HOST"] .CHEMIN."\">Retour aux inscriptions</a>";
 exit;
 }
-	echo "
-	  Si vous êtes plusieurs personnes à venir travailler, merci de spécifier combien.
-      <br><br>
-
-       Si vous vous êtes trompé ou si vous voulez annuler une inscription, vous
-devez cliquer une nouvelle fois sur la case ou votre nom apparaît.
-       
-       <br><br><em>Dans le champs \"remarques\", vous pouvez dire à quelle heure vous venez et vos éventuels commentaires</em></br>";
+	echo "Si vous vous êtes trompé ou si vous voulez annuler une inscription, utilisez le bouton <button style=\"\" onclick=\"goBack()\">Retour</button>
+       <br><em>Dans le champs \"remarques\", vous pouvez mettre vos éventuels commentaires</em></br>";
 	$date=$ladate; $mesheures="";
 		if(preg_match("/ 08:00:00$/",$date))	{
 		$heure="matin";
@@ -51,20 +57,18 @@ devez cliquer une nouvelle fois sur la case ou votre nom apparaît.
 		
 	}elseif(preg_match("/ 18:00:00$/",$date))	{
 				$heure="livraison";
-		$mesheures="Merci de préciser dans les remarques quelle tranche horaire pour votre livraison:<br>
-		12h30 -13h30, 13h30-14h30, 14h30-15h30<br>";
+		
 	}else {
 		$heure="";
 	}
 	
 
-	echo "<br>Je réserve pour le <strong>" .datefr($ladate) .", " .$heure."</strong><br>";
-	echo $mesheures;
+	echo "<p style=\"margin-top: 1em; margin-bottom: 2em\">Je réserve pour le <strong>" .datefr_short($ladate) ."</strong></p>";
 	echo "<form id=\"form1\" name=\"form1\" method=\"post\"
      action=\"insert\">";
 	echo "<input type=\"hidden\" name=\"ladate\" value=\"" .$ladate ."\">";
 	#todo: change date format for a human readable
-	echo "<table><tr><th>Nombre de personnes</th><th>Remarques</th></tr>";
+	echo "<table><tr><th>Nombre de personnes</th><th>Co-voiturage</th><th>Remarques</th></tr>";
 	echo "<tr><td>
 <select name=\"np\" size=\"7\" style=\"width: 70px\">
 <option selected>1</option>
@@ -74,12 +78,19 @@ devez cliquer une nouvelle fois sur la case ou votre nom apparaît.
 <option>5</option>
 <option>6</option>
 </select>
-</td><td>
-<textarea name=\"remarques\" style=\"width: 370px; height: 100px\"></textarea>
+</td>
+<td>Voiture à disposition pour le co-voiturage?<br/><br/>
+<input name=\"voiture\" type=\"radio\" value=\"0\" checked> non
+<input name=\"voiture\" type=\"radio\" value=\"1\"> oui
+</td>
+<td>
+<textarea name=\"remarques\" style=\"width: 270px; height: 50px\"></textarea>
 </td></tr>
-<tr><td>
+<tr>
+<td>
 <input type=\"reset\">
-</td><td>
+</td>
+<td colspan=\"2\">
 <input type=\"submit\">
 </td></tr>
 </table>

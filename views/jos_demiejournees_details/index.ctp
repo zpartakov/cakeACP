@@ -10,6 +10,7 @@ echo $paginator->counter(array(
 <tr>
 	<th><?php echo $paginator->sort('id');?></th>
 	<th><?php echo $paginator->sort('date');?></th>
+	<th><?php echo $paginator->sort('ok');?></th>
 	<th><?php echo $paginator->sort('user');?></th>
 	<th><?php echo $paginator->sort('npers');?></th>
 	<th><?php echo $paginator->sort('rem');?></th>
@@ -29,6 +30,9 @@ foreach ($josDemiejourneesDetails as $josDemiejourneesDetail):
 		</td>
 		<td>
 			<?php echo $josDemiejourneesDetail['JosDemiejourneesDetail']['date']; ?>
+		</td>
+		<td>
+			<?php echo $josDemiejourneesDetail['JosDemiejourneesDetail']['ok']; ?>
 		</td>
 		<td>
 			<?php echo $josDemiejourneesDetail['JosDemiejourneesDetail']['user']; ?>

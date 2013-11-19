@@ -1,3 +1,42 @@
+<style>
+p {
+padding: 3px;
+margin-bottom: 2px;
+}
+/* css for displaying tooltip - infobulles, see functions.php */
+a.tooltip em {
+    display:none;
+}
+a.tooltip:hover {
+    border: 0;
+    position: relative;
+    text-decoration:none;
+}
+a.tooltip:hover em {
+    z-index: 500;
+    font-style: normal;
+    display: block;
+    position: absolute;
+    top: 20px;
+    left: 10px;
+    padding: 15px;
+    color: #000;
+    border: 1px solid #bbb;
+    background: #ADD8E6;
+    width: 300px;
+    -moz-border-radius : 2em 1em; -webkit-border-radius : 2em 1em;
+}
+a.tooltip:hover em span {
+    position: absolute;
+    top: -7px;
+    left: 15px;
+    height: 7px;
+    width: 11px;
+    margin:0;
+    padding: 0;
+    border: 0;
+}
+</style>
 <?php 
 /*
  * registration to demi-journees init (display list)
@@ -22,35 +61,29 @@ $heures=array(
 		"17"
 );
 $heures_libelle=array(
-		"matin",
-		"après-midi",
-		"soir"
+		"9h - 13h",
+		"16h à 20h",
+		"18h à 22h"
 );
 $size=count($heures);
-//Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday
-//lundi, mercredi, jeudi, samedi
-//jours interdits
-$jours_no=";Tuesday;Friday;Sunday;";
 
-/*
-#compatibility var names for PCG
-$dbUsername = $login;
-$dbPassword = $pass;
-$dbName     = $database_name;
-*/
+//jours interdits
+$jours_no="Monday;Tuesday;Wednesday;Friday;Sunday;";
 
 ?>
 <div style="font-size: 2em"><?php echo $this->pageTitle;?></div>
+<p style="margin-top: 1em; margin-bottom: 1em">
+<?php echo $html->link(__('-> Je veux m\'inscrire en liste d\'attente', true), array('controller'=>'listeattentes','action'=>'ajout')); 
+natel_admin();
+?>
+</p>
 <?php 
 /* Output a list of entries the user can choose (onclick=js submit) = default */
 $aujourdhui=date("Y-m-d"); $aujourdhuinix=date("U");
-//fonctions ds ../common/fonctions.inc.php
+
 njoursaffiches(); //nombre de jour affichés, définis dans les configurations par défaut
 delaiinscription(); //nombre de jours minimum pour s'inscrire
 delaiinscriptionlivraison(); //nombre de jours minimum pour s'inscrire
-
-/*modif ad hoc pour mat a reprendre*/
-
 
 #maintenance
 $sqlmaintenance="SELECT * FROM dj_maintenances ORDER BY id desc";
@@ -80,7 +113,7 @@ if($actif=="1") {
 	ORDER BY jos_demiejournees.date LIMIT 0," .($def_jours_affiches*4); //on multiplie le nbre de jours par 4 (am-pm-soir-livr), changer cette constante dans les defaults
 
 }
-#echo $query; exit; //tests
+//echo $query; exit; //tests
 $result=mysql_query($query);
 if(!$result ){
 	echo "mysql_error:<br>".mysql_error(); exit;
@@ -103,10 +136,6 @@ Vous aurez un message de confirmation dans votre boîte aux lettres.<br>
 <strong>Je m'inscris pour le...</strong>
 <br>
 <form id=\"form1\" action=\"http://".$_SERVER['HTTP_HOST'] .CHEMIN."jos_demiejournees/confirm\" name=\"form1\" method=\"post\">
-<TABLE>
-<TR>
-<th><B>Date</B></th><th>Matin</th><th>Apr&egrave;s-midi</th><th>Livraison</th>
-</TR>
 ";
 echo $letexte;
 
@@ -115,10 +144,11 @@ echo $letexte;
 $i=0; $icell=1; $iligne=1;
 $lastrecord=mysql_num_rows($result)-1;
 while($i<mysql_num_rows($result)){
-	$x="";
+	$juser="";
+	
 	$thisId = mysql_result($result,$i,"id");
 	$thisDate = mysql_result($result,$i,"date");
-	$dateCourt=datefr_short(preg_replace("/ .*/","",$thisDate));
+	$dateCourt=datefr_short($thisDate);
 	$thisDatenix=strtotime($thisDate); //date au format unix pour calculs sur les dates
 	$thisREMARQUES = mysql_result($result,$i,"REMARQUES");
 	$nplaces=mysql_result($result,$i,"nplaces");
@@ -126,237 +156,128 @@ while($i<mysql_num_rows($result)){
 	$motif=str_replace("-",".",$thisDate);
 	$motif=str_replace(":",".",$motif);
 	$motif=str_replace(" ",".",$motif);
-	if($statut==1){ //on affiche que si le flag statut = 1
-		#newline
-		#matin
-		if(preg_match("/08:00:00$/",$thisDate))	{
-		//calcul nplace + date pm
-		$nplacespm=mysql_result($result,$i+1,"nplaces");
-		$thisDatepm = mysql_result($result,$i+1,"date");
-
-		$debut="";
-		$iligne++; #on incrémente la nouvelle ligne
-
-		if (($iligne%2)==0) {
-			$bgColor = "#FFFFFF";
-		} else { $bgColor = "#D4FF8F";
-		}
-		if (($iligne%9)==0) { //on ajoute un entete toutes les N lignes
-			$debut.= "     <TR>
-			<th><B>Date</B></th><th>Matin</th><th>Apr&egrave;s-midi</th><th>Livraison</th>
-			</TR>";
-		}
-
-		$debut.= "<tr><td style=\"background-color: " .$bgColor ."\">".$dateCourt;
-
-		$debut.="<br>
-		<td  style=\"background-color: " .$bgColor ."\">";
-		#$debut.="<br>matin<br>";	 //test
-		#$debut.="<br>" .$thisDatenix ."<br>";//test
-		if($thisREMARQUES){
-			$debut.= "<em>" .$thisREMARQUES ."</em>";
-		}
-		$fin='</td>';
-	}elseif(preg_match("/14:00:00$/",$thisDate))	{ //apres-midi
-			
-		//calcul nplace + date pm
-		$nplacesam=mysql_result($result,$i-1,"nplaces");
-		$thisDateam = mysql_result($result,$i-1,"date");
-			
-		$debut ="<td style=\"background-color: " .$bgColor ."\">";
-		#$debut.="<br>après-midi<br>";	 //test
-		$fin='</td>';
-			
-	}elseif(preg_match("/17:00:00$/",$thisDate))	{
-		$debut ="<td style=\"background-color: " .$bgColor ."\">";
-		$fin='</td>';
-		$debut="";
-		$fin="";
-	}elseif(preg_match("/18:00:00$/",$thisDate))	{
-
-		echo "";
-		$debut ="<td style=\"background-color: " .$bgColor ."\">";
-
-		if(preg_match("/jeudi/",$dateCourt)){ #on affiche pas les livraisons si pas jeudi
-		}
-		$fin="</td></tr>";
+	if (($iligne%2)==0) {
+		$bgColor = "lightyellow";
+	} else { $bgColor = "#D4FF8F";
 	}
+	
+	if($statut==1 && $nplaces>0){ //on affiche que si le flag statut = 1 & on demande plus d'une personne
+		echo "<p style=\"padding: 13px; background-color: " .$bgColor ."\">";
+		
+		
+		echo $dateCourt;
 
+		if(preg_match("/jeudi/",$dateCourt)) {
+			echo "&nbsp;<em>- préparation des paniers</em>&nbsp;";
+		} elseif(preg_match("/samedi/",$dateCourt)) {
+			echo "&nbsp;<em>- travail au champ</em>&nbsp;";
+		}
+		
+		/*
+		 * inscription
+		*/
+		
 
-
-	#	if(preg_match("/18:00:00$/",$thisDate)&&!preg_match("/jeudi/",$dateCourt)||preg_match("/17:00:00$/",$thisDate)&&!preg_match("/mercredi/",$dateCourt)||preg_match("/08:00:00$/",$thisDate)&&preg_match("/vendredi/",$dateCourt)){ //on affiche pas les livraisons si pas jeudi; on affiche pas les soirs si pas mercredi
-	if(preg_match("/18:00:00$/",$thisDate)&&!preg_match("/jeudi/",$dateCourt)||preg_match("/17:00:00$/",$thisDate)||preg_match("/08:00:00$/",$thisDate)&&preg_match("/vendredi/",$dateCourt)){ //on affiche pas les livraisons si pas jeudi; on affiche pas les soirs si pas mercredi
-		$cocagnardes="";
-	} else {
+		
 		#donnees cocagnard/e/s
 		$cocagnardes=""; #initialisation de la variable
 		$sqlUser="SELECT *
 		FROM `jos_demiejournees_details`
 		WHERE `date` = '".$thisDate ."' ORDER BY user";
 		#$cocagnardes.= "<br>".$sqlUser."<br>"; #tests
-
+		
 		$sqlUser=mysql_query($sqlUser);
-		$sqlUserN=mysql_num_rows($sqlUser);
-		#$cocagnardes.= "<br>sqlUserN".$sqlUserN."<br>"; #tests
-
-		if(!$sqlUserN){
-			$sqlUserN=0;
-		}
-
-		#$cocagnardes.= " # " .$sqlUserN ."<br>"; //tests
-
-		#calcul du vrai nombre de places
-		$sqlUser2="SELECT SUM(npers) AS np
+				
+		#calcul du nombre de places
+		$sqlUser2="SELECT SUM(npers) AS np, voiture, rem AS remarques 
 		FROM `jos_demiejournees_details`
 		WHERE `date` = '".$thisDate ."' ORDER BY user";
 		#$cocagnardes.= "<br>".$sqlUser2."<br>"; #tests
 		$sqlUser2=mysql_query($sqlUser2);
-		$sqlUserN2=mysql_result($sqlUser2,0,'np');
-		$montre=1;
-
-
-		########## finally print every cell ###############
-		if(preg_match("/08:00:00$/",$thisDate))	{ //matin, ajout heures pm
-			#||preg_match("/14:00:00$/",$thisDate)
-			$sqlUser3="SELECT SUM(npers) AS np, npers AS nps
-			FROM `jos_demiejournees_details`
-			WHERE `date` = '".$thisDatepm ."' ORDER BY user";
-			#$debug=$sqlUser3;
-			#$cocagnardes.= "<br>".$sqlUser."<br>"; #tests
-			$sqlUser3=mysql_query($sqlUser3);
-		$sqlUserN3=mysql_result($sqlUser3,0,'np');
-		$nps=mysql_result($sqlUser3,0,'nps');
-		//echo "nps: " .$nps;
-		$totalplacesampmdispo=$nplaces+$nplacespm;
-		$totalplacesampmprises=$sqlUserN2+$sqlUserN3;
-		/*		$debug= "<br>totalplacesampmdispo " .$totalplacesampmdispo;
-		 $debug.= "<br>totalplacesampmprises " .$totalplacesampmprises;*/
-		if($totalplacesampmprises>=$totalplacesampmdispo){ //le compte est bon ou plus
-			$color="#00FF00";
-			$montre=0;
-		}
-		if(!preg_match("/jeudi/",$dateCourt)) { //n jours à l'avance si pas jeudi
-			if($thisDatenix-(DJ_delai_minimum_inscription*24*2600)<$aujourdhuinix) {
-				$montre=0;
-			}
-		} else { //livraisonjeudi
-			if($thisDatenix-(DJ_delai_minimum_inscription_livraison*24*2600)<$aujourdhuinix) {
-				$montre=0;
-			}
-				
-				
-		}
-
-		} elseif(preg_match("/14:00:00$/",$thisDate))	{ //après-midi, ajout heures am
-			$sqlUser4="SELECT SUM(npers) AS np
-			FROM `jos_demiejournees_details`
-			WHERE `date` = '".$thisDateam ."' ORDER BY user";
-			//$debug=$sqlUser3;
-			//$cocagnardes.= "<br>".$sqlUser."<br>"; #tests
-			$sqlUser4=mysql_query($sqlUser4);
-			$sqlUserN4=mysql_result($sqlUser4,0,'np');
-			$totalplacesampmdispo=$nplaces+$nplacesam;
-			$totalplacesampmprises=$sqlUserN2+$sqlUserN4;
-			/*	$debug= "<br>totalplacesampmdispo " .$totalplacesampmdispo;
-			 $debug.= "<br>totalplacesampmprises " .$totalplacesampmprises;*/
-			if($totalplacesampmprises>=$totalplacesampmdispo){ //le compte est bon ou plus
-				$color="#00FF00";
-				$montre=0;
-			}
-			if(!preg_match("/jeudi/",$dateCourt)) { //n jours à l'avance si pas jeudi
-				if($thisDatenix-(DJ_delai_minimum_inscription*24*2600)<$aujourdhuinix) {
-					$montre=0;
-				}
-			}
-		} else { //pas un matin ni après-midi
-			//if($sqlUserN2!=NULL){
-			if($sqlUserN2>=$nplaces){ //le compte est bon ou plus
-				$color="#00FF00";
-				$montre=0;
-			}elseif(($nplaces-$sqlUserN)==1){ //manque un
-				$color="#99ff00";
-			}elseif(($nplaces-$sqlUserN)==2){ //manque 2
-				$color="3ff9900";
-				$color="#99ff00";
-			}elseif(($nplaces-$sqlUserN)>=3){ //manque 2
-				$color="#FF0000";	//rouge
-				$color="3ff9900";
-				$color="#99ff00";
-			}
-			/*} else {
-			 $montre=0;
-			}*/
-			if(!preg_match("/jeudi/",$dateCourt)) { //n jours à l'avance si pas jeudi£
-				if($thisDatenix-(DJ_delai_minimum_inscription*24*2600)<$aujourdhuinix) {
-					$montre=0;
-				}
-			}  else { //livraisonjeudi
-				if($thisDatenix-(DJ_delai_minimum_inscription_livraison*24*2600)<$aujourdhuinix) {
-					$montre=0;
-						
-				}
-			}
-		}
-		$color="#99ff00";
-		#$cocagnardes.= "<p style=\"background-color: " .$color ."\">Nombre de places: " .$nplaces ." / inscriptions: " .$sqlUserN2 ."</p>";
-
-		if($sqlUserN>0) {
-			$juser="";
-			#$cocagnardes.= "<ul>";
-			$j=0;
-			while($j<$sqlUserN){
-				$thisUser = mysql_result($sqlUser,$j,"user");
-				$thisNote = mysql_result($sqlUser,$j,"rem");
-					
-				$username="SELECT * FROM users WHERE username LIKE '" .$thisUser ."'";
-				$usernameQ=mysql_query($username);
-				if(!$usernameQ) {
-					echo "<br>SQL error:<br>" .mysql_error() ."<br>";
-				}
-				$username=mysql_result($usernameQ,0,'name');
-				$useremail=mysql_result($usernameQ,0,'email');
-
-				#$juser.=$thisUser;
-				if($username=="Administrator") {
-				$juser.=$thisNote;
-				} else {
-				$juser.="<a title=\"envoyer un email\" href=\"mailto:" .$useremail ."\">" .utf8_encode($username) ."</a>";
-				/*
-				 if($nps) {
-				$juser.="&nbsp;(".$nps.")";
-				}
-				*/
-					
-				}
-					
-				$juser.=", ";
-				$j++;
-		}
-		$cocagnardes.= preg_replace("/, $/","",$juser);
-	}
-	#on affiche les remarques seulement si pas vide
-	if($thisREMARQUES){
-	$cocagnardes.= "<br>";
-	$cocagnardes.= "<em>Remarques: ";
-	$cocagnardes.= $thisREMARQUES;
-	$cocagnardes.= "</em><br>";
-	}
-	if($montre==1){
-	$x="<input type=\"hidden\" name=\"utilisateur\" value=\"" .$session->read('Auth.User.username') ."\">";
-	$x.="<input type=\"checkbox\" name=\"ladate\" value=\"" .$thisDate ."\" ";
+		$sqlUserN=mysql_result($sqlUser2,0,'np');
 		
-	$x.= "title=\"Je m'inscris pour le " .jourfr_short($thisDate) .", " .datemySQL2fr(preg_replace("/ .*/","",$thisDate)) ." ".preg_replace("/:/","h",preg_replace("/...$/","",preg_replace("/^.* /","",$thisDate))) ."\"";
-	$x.= " onclick=\"document.form1.submit()\"><br>";
-	$x.=$debug;
-	}
-	}
-	echo $debut;
-	#echo " " .$i ." - "; //tests
-	echo $cocagnardes .$x .$fin;
-	}
-	$i++;
-	}
 
-	echo "</table>";
+
+		
+		$x="<input type=\"hidden\" name=\"utilisateur\" value=\"" .$session->read('Auth.User.username') ."\">";
+		$x.="<input type=\"checkbox\" name=\"ladate\" value=\"" .$thisDate ."\" ";
+		$x.= "title=\"Je m'inscris pour le " .datefr_short($thisDate) .", " .datemySQL2fr(preg_replace("/ .*/","",$thisDate)) ." ".preg_replace("/:/","h",preg_replace("/...$/","",preg_replace("/^.* /","",$thisDate))) ."\"";
+		$x.= " onclick=\"document.form1.submit()\">";
+		//$x.="<input type=\"submit\" value=\"s'inscrire\"><br>";
+		$x.="<br>";
+		
+		if($sqlUserN>=$nplaces){ //le compte est bon ou plus
+			$color="#00FF00";
+			/*
+			 * on affiche pas la possibilité de s'inscrire
+			 */
+			$x="";
+			} elseif(($nplaces-$sqlUserN)==1){ //manque un
+				$color="#99ff00";
+			} elseif(($nplaces-$sqlUserN)==2){ //manque 2
+				$color="3ff9900";
+			} elseif(($nplaces-$sqlUserN)>=3){ //manque 2
+				$color="orange";	//rouge
+		}
+		
+		echo "&nbsp;&nbsp;&nbsp;" .$x;
+		
+		
+		if($sqlUserN>0) {
+			/*
+			 * il y a des inscrits, on affiche lesquels
+			*/
+					
+			$j=0;
+				while($j<$sqlUserN){
+					$thisUser = mysql_result($sqlUser,$j,"user");
+					$voiture = mysql_result($sqlUser,$j,"voiture");
+					$rem = mysql_result($sqlUser,$j,"rem");
+						
+					$username="SELECT * FROM users WHERE username LIKE '" .$thisUser ."'";
+					$usernameQ=mysql_query($username);
+					if(!$usernameQ) {
+						echo "<br>SQL error:<br>" .mysql_error() ."<br>";
+					}
+					$username=mysql_result($usernameQ,0,'name');
+					$useremail=mysql_result($usernameQ,0,'email');
+			
+					#$juser.=$thisUser;
+					if($username=="Administrator") {
+						$juser.=$thisNote;
+					} else {
+						$juser.="<a title=\"envoyer un email\" href=\"mailto:" .$useremail ."\" class=\"tooltip\">" .utf8_encode($username);			
+				if(strlen($rem)>0) {
+					$juser.='<em><span></span>'.$rem.'</em>';
+				}
+						if($voiture=="1") {
+				$juser .="<img src=\"".CHEMIN."img/covoiturage.jpg\" style=\"padding: 5px; width: 25px\" alt=\"co-voiturage proposé\" title=\"co-voiturage proposé\">";
+						
+			
+						}
+					}
+					
+					$juser.="</a>&nbsp;|&nbsp;";
+						
+					
+					$j++;
+				}
+				echo "<div style=\"margin-left: 20%; margin-right: 10%; padding: 5px; background-color: " .$color ."\">".$juser."</div>";
+				
+			}	
+			
+			
+		echo "</p>";
+		$iligne++;
+	}
+$i++;
+}	
+	
 
 ?>
+<p style="margin-top: 1em">
+<?php echo $html->link(__('-> Je veux m\'inscrire en liste d\'attente', true), array('controller'=>'listeattentes','action'=>'ajout')); 
+
+natel_admin();
+?>
+</p>

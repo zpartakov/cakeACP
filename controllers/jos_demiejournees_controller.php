@@ -8,7 +8,7 @@ class JosDemiejourneesController extends AppController {
 var $paginate = array(
         'limit' => 100,
         'order' => array(
-            'JosDemiejournee.id' => 'asc'
+            'JosDemiejournee.date' => 'asc'
         )
     ); 
 	function index() {
@@ -69,7 +69,7 @@ var $paginate = array(
 			$this->Session->setFlash(__('Invalid id for JosDemiejournee', true));
 			$this->redirect(array('action'=>'index'));
 		}
-		if ($this->JosDemiejournee->del($id)) {
+		if ($this->JosDemiejournee->delete($id)) {
 			$this->Session->setFlash(__('JosDemiejournee deleted', true));
 			$this->redirect(array('action'=>'index'));
 		}
