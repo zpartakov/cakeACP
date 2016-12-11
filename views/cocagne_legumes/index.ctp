@@ -1,5 +1,5 @@
 <div class="cocagneLegumes index">
-	<h2><?php __('Cocagne Légumes');?></h2>
+	<h2><?php __('Cocagne Légumes');?> > <?php echo $this->Html->link(__('New Cocagne Legume', true), array('action' => 'add')); ?></h2>
 		<!-- begin search form -->
  <table>
 	 <tr>

@@ -2,44 +2,19 @@
 <?php echo $form->create('JosPdd');?>
 	<fieldset>
  		<legend><?php __('Add JosPdd');?></legend>
- 		<!-- 
-
-id
-Lieu_dit
-mini
-moyen
-grand
-oeufs
-PDDTexte
-PDDAdr
-CP
-Localite
-Ouverture
-dispo_paniers
-imperatifs_livraison
-nb_max_paniers
-contact
-tel
-mail
--->
 	<?php
-		echo $form->input('Lieu_dit');
-		echo $form->input('mini');
-		echo $form->input('moyen');
-		echo $form->input('grand');
-		echo $form->input('oeufs');
+		echo $form->input('PDDINo');
 		echo $form->input('PDDTexte');
+		echo $form->input('PDDNom');
 		echo $form->input('PDDAdr');
-		echo $form->input('CP');
-		echo $form->input('Localite');
-		echo $form->input('Ouverture');
-		echo $form->input('dispo_paniers');
-		echo $form->input('imperatifs_livraison');
-		echo $form->input('nb_max_paniers');
-		echo $form->input('contact');
-		echo $form->input('tel');
-		echo $form->input('mail');
-						?>
+		echo $form->input('PDDNoRue');
+		echo $form->input('PDDTele');
+		echo $form->input('PDDLieu');
+		echo $form->input('PDDEmail');
+		echo $form->input('PDDRem');
+		echo $form->input('PDDGP');
+		echo $form->input('PDDPP');
+	?>
 	</fieldset>
 <?php echo $form->end('Submit');?>
 </div>

@@ -4,9 +4,9 @@
  		<legend><?php __('Edit Cocagne Default'); ?></legend>
 	<?php
 		echo $this->Form->input('id');
-		echo $this->Form->input('lib');
+		echo $this->Form->input('lib', array("style"=>"width: 800px"));
 		echo $this->Form->input('n');
-		echo $this->Form->input('rem1');
+		echo $this->Form->input('rem1', array("style"=>"width: 800px"));
 		echo $this->Form->input('rem2');
 		echo $this->Form->input('datemod');
 	?>

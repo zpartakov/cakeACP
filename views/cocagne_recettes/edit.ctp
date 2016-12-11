@@ -5,7 +5,7 @@
 	<?php
 	#echo $this->['CocagneRecette']['preparation']; exit;
 		echo $this->Form->input('id');
-		echo $this->Form->input('titre');
+		echo $this->Form->input('titre', array('type'=>'text', 'style'=>'width: 300px'));
 		echo $this->Form->input('ingredients');
 		#echo $this->Form->input('preparation', array('value' => utf8_encode($cocagneRecette['CocagneRecette']['preparation']));
 		

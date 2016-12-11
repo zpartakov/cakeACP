@@ -3,24 +3,18 @@ class JosDemiejourneesController extends AppController {
 
 	var $name = 'JosDemiejournees';
 	var $helpers = array('Html', 'Form', 'DatePicker');
-			var $components = array('Auth');
-	
 var $paginate = array(
         'limit' => 100,
         'order' => array(
-            'JosDemiejournee.date' => 'asc'
+            'JosDemiejournee.id' => 'asc'
         )
     ); 
 	function index() {
-				eject_non_admin(); //on autorise pas les non-administrateurs
-		
 		$this->JosDemiejournee->recursive = 0;
 		$this->set('josDemiejournees', $this->paginate());
 	}
 
 	function view($id = null) {
-				eject_non_admin(); //on autorise pas les non-administrateurs
-		
 		if (!$id) {
 			$this->Session->setFlash(__('Invalid JosDemiejournee.', true));
 			$this->redirect(array('action'=>'index'));
@@ -29,8 +23,6 @@ var $paginate = array(
 	}
 
 	function add() {
-				eject_non_admin(); //on autorise pas les non-administrateurs
-		
 		if (!empty($this->data)) {
 			$this->JosDemiejournee->create();
 			if ($this->JosDemiejournee->save($this->data)) {
@@ -43,8 +35,6 @@ var $paginate = array(
 	}
 
 	function edit($id = null) {
-				eject_non_admin(); //on autorise pas les non-administrateurs
-		
 		if (!$id && empty($this->data)) {
 			$this->Session->setFlash(__('Invalid JosDemiejournee', true));
 			$this->redirect(array('action'=>'index'));
@@ -63,38 +53,30 @@ var $paginate = array(
 	}
 
 	function delete($id = null) {
-				eject_non_admin(); //on autorise pas les non-administrateurs
-		
 		if (!$id) {
 			$this->Session->setFlash(__('Invalid id for JosDemiejournee', true));
 			$this->redirect(array('action'=>'index'));
 		}
-		if ($this->JosDemiejournee->delete($id)) {
+		if ($this->JosDemiejournee->del($id)) {
 			$this->Session->setFlash(__('JosDemiejournee deleted', true));
 			$this->redirect(array('action'=>'index'));
 		}
 	}
 
 //a function to adjust the number of persons for the demi-journees	
-function ajustements() {
-			eject_non_admin(); //on autorise pas les non-administrateurs
-	
-	//do not display layout
-	#$this->layout = '';
-				
+		function ajustements() {
+			//do not display layout
+			#$this->layout = '';
+						
 
-	}
-	
-//ajax jours
-function montrejours() {
-			eject_non_admin(); //on autorise pas les non-administrateurs
-	
-}
+			}
+			
+			//ajax jours
+			function montrejours() {
+			}
 
 function metajourplaces() //fonction pour mettre a jour automatiquement le nombr de personnes pour une date donnee
 	{
-				eject_non_admin(); //on autorise pas les non-administrateurs
-		
 		$id=$_GET['id'];
 		$nplaces=$_GET['val'];
 		$sqlo="UPDATE jos_demiejournees 
@@ -113,8 +95,6 @@ function metajourplaces() //fonction pour mettre a jour automatiquement le nombr
 	
 	function metajourstatut() //fonction pour mettre a jour automatiquement le nombr de personnes pour une date donnee
 	{
-				eject_non_admin(); //on autorise pas les non-administrateurs
-		
 		$id=$_GET['id'];
 		$nplaces=$_GET['val'];
 		#echo $nplaces; exit;
@@ -136,41 +116,8 @@ function metajourplaces() //fonction pour mettre a jour automatiquement le nombr
 				exit();
 			}
 	}
-	
-	/*
-	 * pages for members
-	 */
-	
-	/*
-	 * registration to demi-journees init (display list)
-	 */
-	function demijournees() {
-		$this->layout = 'intranet';
-	}
-	
-	/*
-	 * confirmation of registration step 1, display user a list of items 
-	 */
-	function confirm() {
-		$this->layout = 'intranet';
-	}
 
-	/*
-	 * insert new registration after confirmation
-	*/
-	function insert() {
-		$this->layout = 'intranet';
-	}
-	/*
-	 * unregister user to a given day
-	 */
-	function desinscription() {
-		$this->layout = 'intranet';
-	}
-	
-	function mesinscriptions() {
-		$this->layout = 'intranet';
-	}
+
 }
 
 ?>

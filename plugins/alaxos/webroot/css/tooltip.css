@@ -1,0 +1,32 @@
+@CHARSET "UTF-8";
+
+#tt_container
+{
+	background-color: #ffffff;
+	border:solid 1px #C60065;
+	min-width:50px;
+	min-height:50px;	
+	max-width:500px;
+	max-height:500px;
+	position:absolute;
+	opacity:0.95;
+	-moz-border-radius: 15px;
+	-webkit-border-radius:15px;
+  	border-radius: 15px;
+  	padding:15px;
+  	display:none;
+  	z-index: 100000;
+}
+
+#tt_content
+{
+	/*
+	* put max here to allow IE to 
+	* show scrollbars if needed
+	*/
+	max-width:500px;
+	max-height:500px;
+	
+	max-height:inherit;
+	overflow:auto;
+}

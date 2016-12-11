@@ -4,8 +4,7 @@
  * 
  * */
 class TblCustomersController extends AppController {
-		var $components = array('Auth');
-	
+
 	var $name = 'TblCustomers';
 #criteres de tri
 	var $paginate = array(
@@ -16,8 +15,6 @@ class TblCustomersController extends AppController {
     );
     
 	function index() {
-				eject_non_admin(); //on autorise pas les non-administrateurs
-		
 		$this->TblCustomer->recursive = 0;
 				if($this->data['TblCustomer']['q']) {
 					$input = $this->data['TblCustomer']['q']; 
@@ -34,8 +31,6 @@ class TblCustomersController extends AppController {
 	}
 
 	function view($id = null) {
-				eject_non_admin(); //on autorise pas les non-administrateurs
-		
 		if (!$id) {
 			$this->Session->setFlash(__('Invalid tbl customer', true));
 			$this->redirect(array('action' => 'index'));
@@ -44,8 +39,6 @@ class TblCustomersController extends AppController {
 	}
 
 	function add() {
-				eject_non_admin(); //on autorise pas les non-administrateurs
-		
 		if (!empty($this->data)) {
 			$this->TblCustomer->create();
 			if ($this->TblCustomer->save($this->data)) {
@@ -58,8 +51,6 @@ class TblCustomersController extends AppController {
 	}
 
 	function edit($id = null) {
-				eject_non_admin(); //on autorise pas les non-administrateurs
-		
 		if (!$id && empty($this->data)) {
 			$this->Session->setFlash(__('Invalid tbl customer', true));
 			$this->redirect(array('action' => 'index'));
@@ -78,8 +69,6 @@ class TblCustomersController extends AppController {
 	}
 
 	function delete($id = null) {
-				eject_non_admin(); //on autorise pas les non-administrateurs
-		
 		if (!$id) {
 			$this->Session->setFlash(__('Invalid id for tbl customer', true));
 			$this->redirect(array('action'=>'index'));
@@ -92,9 +81,16 @@ class TblCustomersController extends AppController {
 		$this->redirect(array('action' => 'index'));
 	}
 		function miseajour() { //pour mettre a jour les cocagnards a partir du fichier access
-						eject_non_admin(); //on autorise pas les non-administrateurs
-			
 		#todo before miseajour PDD http://129.194.18.217/cocagne/cake/jos_pdds/miseajour todo corriger serveur
+	}
+	
+	function update_c5 () {
+		/*
+		 * a script to migrate joomla users to concrete5
+		 * 
+		 * */
+		 				//do not display layout
+		//$this->layout = '';
 	}
 }
 ?>

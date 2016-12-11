@@ -2,8 +2,8 @@
 class JosDemiejourneesDefaultSchedulesController extends AppController {
 
 	var $name = 'JosDemiejourneesDefaultSchedules';
-		var $components = array('Auth');
-	
+	#var $components = array('Alaxos.AlaxosFilter');	
+
 	var $helpers = array('Html', 'Form', 'DatePicker');
 var $paginate = array(
         'limit' => 50,
@@ -12,16 +12,12 @@ var $paginate = array(
         )
     ); 
 	function index() {
-				eject_non_admin(); //on autorise pas les non-administrateurs
-		
 		#$this->Node->locale = 'fr_CH';
 		$this->JosDemiejourneesDefaultSchedule->recursive = 0;
 		$this->set('josDemiejourneesDefaultSchedules', $this->paginate());
 	}
 
 	function view($id = null) {
-				eject_non_admin(); //on autorise pas les non-administrateurs
-		
 		if (!$id) {
 			$this->Session->setFlash(__('Invalid jos demiejournees default schedule', true));
 			$this->redirect(array('action' => 'index'));
@@ -30,8 +26,6 @@ var $paginate = array(
 	}
 
 	function add() {
-				eject_non_admin(); //on autorise pas les non-administrateurs
-		
 		if (!empty($this->data)) {
 			$this->JosDemiejourneesDefaultSchedule->create();
 			if ($this->JosDemiejourneesDefaultSchedule->save($this->data)) {
@@ -44,8 +38,6 @@ var $paginate = array(
 	}
 
 	function edit($id = null) {
-				eject_non_admin(); //on autorise pas les non-administrateurs
-		
 		if (!$id && empty($this->data)) {
 			$this->Session->setFlash(__('Invalid jos demiejournees default schedule', true));
 			$this->redirect(array('action' => 'index'));
@@ -64,8 +56,6 @@ var $paginate = array(
 	}
 
 	function delete($id = null) {
-				eject_non_admin(); //on autorise pas les non-administrateurs
-		
 		if (!$id) {
 			$this->Session->setFlash(__('Invalid id for jos demiejournees default schedule', true));
 			$this->redirect(array('action'=>'index'));
@@ -80,8 +70,6 @@ var $paginate = array(
 	
 	function metajourplaces() //fonction pour mettre a jour automatiquement le nombr de personnes pour une date donnee
 	{
-				eject_non_admin(); //on autorise pas les non-administrateurs
-		
 		$id=$_GET['id'];
 		$nplaces=$_GET['val'];
 		$sqlo="UPDATE jos_demiejournees_default_schedules  

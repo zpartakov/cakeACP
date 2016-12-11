@@ -1,0 +1,38 @@
+<div class="josReservations view">
+<h2><?php  __('JosReservation');?></h2>
+	<dl><?php $i = 0; $class = ' class="altrow"';?>
+		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Id'); ?></dt>
+		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
+			<?php echo $josReservation['JosReservation']['id']; ?>
+			&nbsp;
+		</dd>
+		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Date'); ?></dt>
+		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
+			<?php echo $josReservation['JosReservation']['date']; ?>
+			&nbsp;
+		</dd>
+		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Type'); ?></dt>
+		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
+			<?php echo $josReservation['JosReservation']['type']; ?>
+			&nbsp;
+		</dd>
+		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Nplaces'); ?></dt>
+		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
+			<?php echo $josReservation['JosReservation']['nplaces']; ?>
+			&nbsp;
+		</dd>
+		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('REMARQUES'); ?></dt>
+		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
+			<?php echo $josReservation['JosReservation']['REMARQUES']; ?>
+			&nbsp;
+		</dd>
+	</dl>
+</div>
+<div class="actions">
+	<ul>
+		<li><?php echo $html->link(__('Edit JosReservation', true), array('action'=>'edit', $josReservation['JosReservation']['id'])); ?> </li>
+		<li><?php echo $html->link(__('Delete JosReservation', true), array('action'=>'delete', $josReservation['JosReservation']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $josReservation['JosReservation']['id'])); ?> </li>
+		<li><?php echo $html->link(__('List JosReservations', true), array('action'=>'index')); ?> </li>
+		<li><?php echo $html->link(__('New JosReservation', true), array('action'=>'add')); ?> </li>
+	</ul>
+</div>

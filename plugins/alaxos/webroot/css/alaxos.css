@@ -1,0 +1,19 @@
+
+.toolbar_container
+{
+	padding-top:5px;
+	margin:20px 0px;
+	text-align:right;
+	height:28px;
+	border-top:solid 1px grey;
+	border-bottom:solid 1px grey;
+}
+.toolbar_container_list
+{
+	text-align:right;
+	height:39px;
+}
+.toolbar_container .toolbar, .toolbar_container_list .toolbar 
+{
+	float:left;
+}

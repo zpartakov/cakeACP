@@ -3,13 +3,9 @@
 class JosReservationsController extends AppController {
 
 	var $name = 'JosReservations';
-	var $components = array('Auth');
-	
 	var $helpers = array('Html', 'Form');
 
 	function index() {
-				eject_non_admin(); //on autorise pas les non-administrateurs
-		
 		$this->JosReservation->recursive = 0;
 		$this->set('josReservations', $this->paginate());
 	$aujourdhui=date("Y-m-d");
@@ -18,8 +14,6 @@ class JosReservationsController extends AppController {
 		}
 
 	function view($id = null) {
-					eject_non_admin(); //on autorise pas les non-administrateurs
-		
 		if (!$id) {
 			$this->Session->setFlash(__('Invalid JosReservation.', true));
 			$this->redirect(array('action'=>'index'));
@@ -28,8 +22,6 @@ class JosReservationsController extends AppController {
 	}
 
 	function add() {
-				eject_non_admin(); //on autorise pas les non-administrateurs
-		
 		if (!empty($this->data)) {
 			$this->JosReservation->create();
 			if ($this->JosReservation->save($this->data)) {
@@ -42,8 +34,6 @@ class JosReservationsController extends AppController {
 	}
 
 	function edit($id = null) {
-				eject_non_admin(); //on autorise pas les non-administrateurs
-		
 		if (!$id && empty($this->data)) {
 			$this->Session->setFlash(__('Invalid JosReservation', true));
 			$this->redirect(array('action'=>'index'));
@@ -62,8 +52,6 @@ class JosReservationsController extends AppController {
 	}
 
 	function delete($id = null) {
-				eject_non_admin(); //on autorise pas les non-administrateurs
-		
 		if (!$id) {
 			$this->Session->setFlash(__('Invalid id for JosReservation', true));
 			$this->redirect(array('action'=>'index'));
@@ -74,8 +62,6 @@ class JosReservationsController extends AppController {
 		}
 	}
 	function adds() {
-				eject_non_admin(); //on autorise pas les non-administrateurs
-		
 
 	}
 	

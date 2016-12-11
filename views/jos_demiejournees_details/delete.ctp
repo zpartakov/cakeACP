@@ -11,7 +11,7 @@
 * See COPYRIGHT.php for copyright notices and details.
 */
 $id=trim(preg_replace("/.*\//", "", $_SERVER["QUERY_STRING"]));
-$sql="DELETE FROM `jos_demiejournees_details` WHERE `jos_demiejournees_details`.`id` = " .$id;
+$sql="DELETE FROM `lesjardinsdecocagnech`.`jos_demiejournees_details` WHERE `jos_demiejournees_details`.`id` = " .$id;
 #echo $sql; exit;
 #do and check sql
 $sql=mysql_query($sql);

@@ -1,0 +1,6 @@
+
+msgid 	"elementTotal"
+msgstr 	"elements: %count%"
+
+msgid 	"pageXofX"
+msgstr 	"page %page% on %pages% "

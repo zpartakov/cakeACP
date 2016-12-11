@@ -3,8 +3,7 @@ class JosDemiejourneesDetailsController extends AppController {
 
 	var $name = 'JosDemiejourneesDetails';
 	var $helpers = array('Html', 'Form');
-	var $components = array('Auth','RequestHandler');
-	        
+	        var $components = array('RequestHandler'); 
 	#criteres de tri
 	var $paginate = array(
         'limit' => 100,
@@ -13,15 +12,11 @@ class JosDemiejourneesDetailsController extends AppController {
         )
     );
 	function index() {
-				eject_non_admin(); //on autorise pas les non-administrateurs
-		
 		$this->JosDemiejourneesDetail->recursive = 0;
 		$this->set('josDemiejourneesDetails', $this->paginate());
 	}
 
 	function view($id = null) {
-				eject_non_admin(); //on autorise pas les non-administrateurs
-		
 		if (!$id) {
 			$this->Session->setFlash(__('Invalid JosDemiejourneesDetail.', true));
 			$this->redirect(array('action'=>'index'));
@@ -30,8 +25,6 @@ class JosDemiejourneesDetailsController extends AppController {
 	}
 
 	function add() {
-				eject_non_admin(); //on autorise pas les non-administrateurs
-		
 		if (!empty($this->data)) {
 			$this->JosDemiejourneesDetail->create();
 			if ($this->JosDemiejourneesDetail->save($this->data)) {
@@ -44,16 +37,16 @@ class JosDemiejourneesDetailsController extends AppController {
 	}
 
 	function edit($id = null) {
-				eject_non_admin(); //on autorise pas les non-administrateurs
-		
 		if (!$id && empty($this->data)) {
 			$this->Session->setFlash(__('Invalid JosDemiejourneesDetail', true));
 			$this->redirect(array('action'=>'index'));
 		}
 		if (!empty($this->data)) {
-			//echo $this->data['JosDemiejourneesDetail']['ok']; exit;
 			if ($this->JosDemiejourneesDetail->save($this->data)) {
-				$this->redirect($_SERVER["HTTP_REFERER"]);
+				#$this->Session->setFlash(__('The JosDemiejourneesDetail has been saved', true));
+#				$this->redirect(array('action'=>'index'));
+$this->redirect($_SERVER["HTTP_REFERER"]);
+
 			} else {
 				$this->Session->setFlash(__('The JosDemiejourneesDetail could not be saved. Please, try again.', true));
 			}
@@ -64,14 +57,10 @@ class JosDemiejourneesDetailsController extends AppController {
 	}
 
 	function delete() {
-				eject_non_admin(); //on autorise pas les non-administrateurs
-		
 
 	}
 
 function liste() {
-			eject_non_admin(); //on autorise pas les non-administrateurs
-	
 			$this->JosDemiejourneesDetail->recursive = 0;
 			$aujourdhui=date("Y-m-d h:i");
 			$options = array(
@@ -81,19 +70,11 @@ function liste() {
 	}
 	
 	function changer()
-	
 	{
-					eject_non_admin(); //on autorise pas les non-administrateurs
-		
 	}
 	
-	function metajourplaces() 
-	/*
-	 *fonction pour mettre a jour automatiquement le nombr de personnes pour une date donnee 
-	 */
+	function metajourplaces() //fonction pour mettre a jour automatiquement le nombr de personnes pour une date donnee
 	{
-					eject_non_admin(); //on autorise pas les non-administrateurs
-		
 		$id=$_GET['id'];
 		$nplaces=$_GET['val'];
 		//echo "Date: " .$date ." - npers: " .$val; 		exit; //tests
@@ -111,58 +92,21 @@ function liste() {
 			}
 	}
 
-	
-	
-	
-	function okdj()
-	/*
-	 *fonction pour valider (oui/non) la participation d'un membre à une demi-journée
-	*/
-	{
-		eject_non_admin(); //on autorise pas les non-administrateurs
-	
-		$id=$_GET['id'];
-		$val=$_GET['val'];
-		//echo "Date: " .$date ." - npers: " .$val; 		exit; //tests
-		$sqlo="UPDATE jos_demiejournees_details 
-		SET ok = '" .$val ."'
-		WHERE id=" .$id;
-		#echo "<br>".$sqlo; exit;
-			
-		$sql=mysql_query($sqlo);
-		if(!$sql) {
-			echo "SQL error with query: " .$sqlo ."<br>".mysql_error(); //sql problem
-		} else {
-			header("Location: " .$_SERVER["HTTP_REFERER"]); //return to previous page
-			exit();
-		}
-	}
-	
 function correction() {
-				eject_non_admin(); //on autorise pas les non-administrateurs
-	
 	}
 
 function correction2() {
-				eject_non_admin(); //on autorise pas les non-administrateurs
-	
 	}
 	
 function archiver() {
-				eject_non_admin(); //on autorise pas les non-administrateurs
-	
 }
 
 function intialiser() {
-				eject_non_admin(); //on autorise pas les non-administrateurs
-	
 }
 
 
    function export() //http://bakery.cakephp.org/articles/view/exporting-data-to-csv-the-cakephp-way
         {
-        				eject_non_admin(); //on autorise pas les non-administrateurs
-        	
             // Stop Cake from displaying action's execution time
             Configure::write('debug',0);
             // Find fields needed without recursing through associated models
@@ -193,8 +137,6 @@ function intialiser() {
         } 
         
         function nouveau() {
-        				eject_non_admin(); //on autorise pas les non-administrateurs
-        	
 		}
 
 }

@@ -1,19 +1,13 @@
 <div class="josPdds index">
-<h2><?php __('Points de distribution');?></h2>
-<?php 
-if($_GET['all']==1) {
-//	$montre="inline";
-	echo "<a href=?all=0>Résumé</a>";
-} else {
-	$montre="none";
-	echo "<a href=?all=1>Détail</a>";
-}
-?>
+<h2><?php __('Points de distribution');?> > <?php echo $html->link(__('Nouveau PDD', true), array('action'=>'add')); ?></h2>
+
 <p>
 <?php
+/*
 echo $paginator->counter(array(
-'format' => __('Page %page% de %pages%, affiche %current% enregistrements d\'un total de %count%, commence à l\'enregistrement %start%, finit à l\'enregistrement %end%', true)
+'format' => __('Page %page% de %pages%, montre %current% enregistrements d\'un total de %count%, commence à l\'enregistrement %start%, finit à l\'enregistrement %end%', true)
 ));
+* */
 ?></p>
 <!-- begin search form -->
  <table>
@@ -31,27 +25,19 @@ echo $paginator->counter(array(
 </tr>
 </table>
 <!-- end search form -->
-<table cellpadding="0" cellspacing="0">
-<tr>
-	<!-- <th><?php echo $paginator->sort('id');?></th> -->
 
-	<th><?php echo $paginator->sort('Lieu_dit');?></th>
-	<th style="display: <?php  echo $montre;?>;"><?php echo $paginator->sort('mini');?></th>
-	<th style="display: <?php  echo $montre;?>;"><?php echo $paginator->sort('moyen');?></th>
-	<th style="display: <?php  echo $montre;?>;"><?php echo $paginator->sort('grand');?></th>
-	<th style="display: <?php  echo $montre;?>;"><?php echo $paginator->sort('oeufs');?></th>
-	<th><?php echo $paginator->sort('PDDTexte');?></th>
-	<th style="display: <?php  echo $montre;?>;"><?php echo $paginator->sort('PDDAdr');?></th>
-	<th style="display: <?php  echo $montre;?>;"><?php echo $paginator->sort('CP');?></th>
-	<th style="display: <?php  echo $montre;?>;"><?php echo $paginator->sort('Localite');?></th>
-	<th style="display: <?php  echo $montre;?>;"><?php echo $paginator->sort('Ouverture');?></th>
-	<th style="display: <?php  echo $montre;?>;"><?php echo $paginator->sort('dispo_paniers');?></th>
-	<th style="display: <?php  echo $montre;?>;"><?php echo $paginator->sort('imperatifs_livraison');?></th>
-	<th style="display: <?php  echo $montre;?>;"><?php echo $paginator->sort('nb_max_paniers');?></th>
-	<th><?php echo $paginator->sort('contact');?></th>
-	<th><?php echo $paginator->sort('tel');?></th>
-	<th><?php echo $paginator->sort('mail');?></th>
-	
+<table cellpadding="0" cellspacing="0">
+
+<tr>
+	<th><?php echo $paginator->sort('id');?></th>
+	<th><?php echo $paginator->sort('No');?></th>
+	<th><?php echo $paginator->sort('Texte');?></th>
+	<th><?php echo $paginator->sort('Nom');?></th>
+	<th><?php echo $paginator->sort('Adresse');?></th>
+<!--	<th><?php echo $paginator->sort('Téléphone');?></th>
+	<th><?php echo $paginator->sort('Lieu');?></th>-->
+	<th><?php echo $paginator->sort('Email');?></th>
+	<th><?php echo $paginator->sort('Remarque');?></th>
 	<th class="actions"><?php __('Actions');?></th>
 </tr>
 <?php
@@ -63,98 +49,45 @@ foreach ($josPdds as $josPdd):
 	}
 ?>
 	<tr<?php echo $class;?>>
-	<!-- 	<td>
+		<td>
 			<?php echo $josPdd['JosPdd']['id']; ?>
 		</td>
- -->
-
-<td>
-			<?php echo $html->link($josPdd['JosPdd']['Lieu_dit'], array('action'=>'view', $josPdd['JosPdd']['id'])); ?>
-			</td>
-
-
-<td style="display: <?php  echo $montre;?>;">
-			<?php echo $josPdd['JosPdd']['mini']; ?>
+		<td>
+			<?php echo $josPdd['JosPdd']['PDDINo']; ?>
 		</td>
-
-
-<td style="display: <?php  echo $montre;?>;">
-			<?php echo $josPdd['JosPdd']['moyen']; ?>
+		<td>
+			<?php echo $josPdd['JosPdd']['PDDTexte']; ?>
 		</td>
-
-
-<td style="display: <?php  echo $montre;?>;">
-			<?php echo $josPdd['JosPdd']['grand']; ?>
+		<td>
+			<?php echo $josPdd['JosPdd']['PDDNom']; ?>
 		</td>
-
-
-<td style="display: <?php  echo $montre;?>;">
-			<?php echo $josPdd['JosPdd']['oeufs']; ?>
+		<td>
+			<?php echo $josPdd['JosPdd']['PDDNoRue']; ?>, 
+			<?php
+			 echo $josPdd['JosPdd']['PDDAdr']; 
+			 ?>
+			 <br>
+			 			<?php echo $josPdd['JosPdd']['PDDLieu']; ?>
+			 <br>
+			<?php echo $josPdd['JosPdd']['PDDTele']; ?>
 		</td>
-
-
-<td>
-
-			<?php echo $josPdd['JosPdd']['PDDTexte']; 
-			
-			?>
+		<td>
+			<a href="mailto:<?php echo $josPdd['JosPdd']['PDDEmail']; ?>"><?php echo $josPdd['JosPdd']['PDDEmail']; ?></a>
 		</td>
-
-
-<td style="display: <?php  echo $montre;?>;">
-			<?php echo $josPdd['JosPdd']['PDDAdr']; ?>
+		<td>
+			<?php echo $josPdd['JosPdd']['PDDRem']; ?>
 		</td>
-
-
-<td style="display: <?php  echo $montre;?>;">
-			<?php echo $josPdd['JosPdd']['CP']; ?>
+<!--		<td>
+			<?php echo $josPdd['JosPdd']['PDDGP']; ?>
 		</td>
-
-
-<td style="display: <?php  echo $montre;?>;">
-			<?php echo $josPdd['JosPdd']['Localite']; ?>
+		<td>
+			<?php echo $josPdd['JosPdd']['PDDPP']; ?>
 		</td>
-
-
-<td style="display: <?php  echo $montre;?>;">
-			<?php echo $josPdd['JosPdd']['Ouverture']; ?>
-		</td>
-
-
-<td style="display: <?php  echo $montre;?>;">
-			<?php echo $josPdd['JosPdd']['dispo_paniers']; ?>
-		</td>
-
-
-<td style="display: <?php  echo $montre;?>;">
-			<?php echo $josPdd['JosPdd']['imperatifs_livraison']; ?>
-		</td>
-
-
-<td style="display: <?php  echo $montre;?>;">
-			<?php echo $josPdd['JosPdd']['nb_max_paniers']; ?>
-		</td>
-
-
-<td>
-			<?php echo $josPdd['JosPdd']['contact']; ?>
-		</td>
-
-
-<td>
-			<?php echo $josPdd['JosPdd']['tel']; ?>
-		</td>
-
-
-<td>
-			<?php echo $josPdd['JosPdd']['mail']; ?>
-		</td>
-
-
+-->
 		<td class="actions">
 			<?php echo $html->link(__('Voir', true), array('action'=>'view', $josPdd['JosPdd']['id'])); ?>
 			<?php echo $html->link(__('Modifier', true), array('action'=>'edit', $josPdd['JosPdd']['id'])); ?>
-			<?php echo $html->link(__('Supprimer', true), array('action'=>'delete', $josPdd['JosPdd']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $josPdd['JosPdd']['id'])); ?>
+			<?php echo $html->link(__('Effacer', true), array('action'=>'delete', $josPdd['JosPdd']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $josPdd['JosPdd']['id'])); ?>
 		</td>
 	</tr>
 <?php endforeach; ?>
@@ -167,6 +100,6 @@ foreach ($josPdds as $josPdd):
 </div>
 <div class="actions">
 	<ul>
-		<li><?php echo $html->link(__('Nouveau point de distribution', true), array('action'=>'add')); ?></li>
+		<li><?php echo $html->link(__('Nouveau PDD', true), array('action'=>'add')); ?></li>
 	</ul>
 </div>

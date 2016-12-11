@@ -3,7 +3,7 @@
 	<table cellpadding="0" cellspacing="0">
 	<tr>
 			<th><?php echo $this->Paginator->sort('id');?></th>
-			<th><?php echo $this->Paginator->sort('User.id');?></th>
+			<th><?php echo $this->Paginator->sort('jos_user_id');?></th>
 			<th><?php echo $this->Paginator->sort('rem');?></th>
 			<th class="actions"><?php __('Actions');?></th>
 	</tr>
@@ -47,7 +47,7 @@
 	<h3><?php __('Actions'); ?></h3>
 	<ul>
 		<li><?php echo $this->Html->link(__('New Livreur', true), array('action' => 'add')); ?></li>
-		<li><?php echo $this->Html->link(__('List Jos Users', true), array('controller' => 'users', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Jos User', true), array('controller' => 'users', 'action' => 'add')); ?> </li>
+		<li><?php echo $this->Html->link(__('List Jos Users', true), array('controller' => 'jos_users', 'action' => 'index')); ?> </li>
+		<li><?php echo $this->Html->link(__('New Jos User', true), array('controller' => 'jos_users', 'action' => 'add')); ?> </li>
 	</ul>
 </div>

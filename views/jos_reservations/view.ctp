@@ -69,10 +69,10 @@ if($sqlUserN>0) {
 		$remUser = MYSQL_RESULT($sqlUser,$j,"rem");
 		
 		
-		#$user.="<img src=\"http://www.p2r.ch/cms/images/stories/fruit/strawberry.jpg\" width=\"35\" height=\"25\">";
+		#$user.="<img src=\"http://www.les-jardins-de-cocagne.ch/cms/images/stories/fruit/strawberry.jpg\" width=\"35\" height=\"25\">";
 		#$user.=($j+1) .":";
 		$user.="<li>";
-		$user.="<a href=\"http://www.p2r.ch/cake/jos_reservations_details/edit/" .$thisidUser."\">" .$thisUser."</a>";
+		$user.="<a href=\"http://www.les-jardins-de-cocagne.ch/cake/jos_reservations_details/edit/" .$thisidUser."\">" .$thisUser."</a>";
 		$user.="<br>Nbre de personnes: " .$npersUser;
 		$user.="<br>Remarques: " .$remUser;
 		

@@ -1,0 +1,91 @@
+@CHARSET "UTF-8";
+
+.horizontal_menu_wrapper 
+{
+	padding: 0px;
+	margin: 0px;
+	height:29px; 
+	position: relative; 
+}
+.navbar 
+{
+	margin: 0px;
+	padding: 0px; 
+}
+.navbar li 
+{
+	list-style: none;
+	float: left; 
+	padding-left:5px;
+	white-space: nowrap;
+}
+.navbar li a 
+{
+	line-height: 29px;
+	padding: 0px 5px;
+	display: block;
+	text-decoration: none;
+	/*
+	-webkit-border-radius:5px;
+	-moz-border-radius:5px;
+	border-radius:5px;
+	*/ 
+}
+.navbar li a:hover
+{
+    background:#eeeeee;
+}
+.navbar li a.selected
+{
+    background:#eeeeee;
+}
+.navbar li ul 
+{
+	display: none; 
+	width: 150px; /* Width to help Opera out */
+}
+.navbar li ul li
+{
+    padding:0px;
+}
+.navbar li ul li:first-child
+{
+    border-top:solid 1px #888888;
+}
+.navbar li:hover ul, #navbar li.hover ul 
+{
+	display: block;
+	position: absolute;
+	margin:0px;
+	padding: 0px; 
+   
+	/* CSS3 standard */
+	/*
+	opacity:0.9;
+	*/
+	/* for IE */
+	/*
+	filter:alpha(opacity=90);
+	*/
+}
+.navbar li:hover li, #navbar li.hover li 
+{
+	float: none;
+	width:200px;
+}
+.navbar li:hover li a, .navbar li.hover li a 
+{
+	background-color: #ffffff;
+	border-left: 1px solid #888888;
+	border-bottom: 1px solid #888888;
+	border-right: 1px solid #888888;
+	/*
+	-webkit-border-radius:0px;
+	-moz-border-radius:0px;
+	border-radius:0px;
+	*/ 
+}
+.navbar li li a:hover, .navbar li li a.selected
+{
+   background:#eeeeee;
+}

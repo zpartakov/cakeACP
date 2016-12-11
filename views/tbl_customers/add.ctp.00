@@ -1,0 +1,48 @@
+<div class="tblCustomers form">
+<?php echo $this->Form->create('TblCustomer');?>
+	<fieldset>
+ 		<legend><?php __('Nouvelle adresse Cocagnard/e/s (commandes)'); ?></legend>
+	<select id="TblCustomerPersPDDDistrNo" name="data[TblCustomer][PersPDDDistrNo]" >
+	<?php
+	
+	#do and check sql
+//request on pdds
+$pdd="SELECT * FROM jos_pdds ORDER BY PDDTexte";
+#do and check sql
+	$sql=mysql_query($pdd);
+	if(!$sql) {
+		echo "SQL error: " .mysql_error(); exit;
+	}
+	
+	$i=0;
+	while($i<mysql_num_rows($sql)){
+		echo "<option value=\"" .mysql_result($sql,$i,'id') ."\">" .mysql_result($sql,$i,'PDDTexte')."</option>";
+		$i++;
+		}
+	
+	?>
+	</select> 
+	<?php
+	
+		#echo $this->Form->input('PersPDDDistrNo');
+		echo $this->Form->input('PersNom');
+		echo $this->Form->input('PersPrenom');
+		echo $this->Form->input('PersAdresse');
+		echo $this->Form->input('PersTelephone');
+		echo $this->Form->input('PersNPA');
+		echo $this->Form->input('PersLocalite');
+		echo $this->Form->input('PersAdresseEmail');
+		#echo $this->Form->input('jos_user_id');
+	?>
+	<div class="input textarea required"><label for="TblCustomerPersAdresse">ID (Identifiant) Joomla</label>
+	<input type="texte" id="TblCustomerJosUserId" name="data[TblCustomer][jos_user_id]">
+	</fieldset>
+<?php echo $this->Form->end(__('Ajouter', true));?>
+</div>
+<div class="actions">
+	<h3><?php __('Actions'); ?></h3>
+	<ul>
+
+		<li><?php echo $this->Html->link(__('List Tbl Customers', true), array('action' => 'index'));?></li>
+	</ul>
+</div>

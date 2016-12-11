@@ -1,42 +1,46 @@
-/**
-*
-* @package cakeACP
-* @version $Id: 1.0.0
-* @author Fred Radeff <fradeff@akademia.ch>
-* @copyright (c) 2012 Fred Radeff, akademia.ch
-* @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
-*
-*/
+# cakeACP                                    
+[![cakeACP](//radeff.red/pics/acp/cakephpAcp.png)](cakeACP)
 
-// cakeACP - https://github.com/zpartakov/cakeACP
-//
-// cakeACP is free software: you can redistribute it and/or modify
-// it under the terms of the GNU General Public License as published by
-// the Free Software Foundation, either version 3 of the License, or
-// (at your option) any later version.
-//
-// cakeACP is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// GNU General Public License for more details.
-//
-// You should have received a copy of the GNU General Public License
-// along with cakeACP.  If not, see <http://www.gnu.org/licenses/>.
- 
- 
-cakeACP
-=======
-Software for administration of a contractual of a contract farming organisation
-Logiciel de gestion pour une coopérative d'agriculture contractuelle de proximité (ACP)
+## Français
+Logiciel de gestion pour une coopérative d'agriculture contractuelle de proximité (ACP en Suisse, AMAP en France)
+
 Ce dépôt comprend les outils informatiques de gestion d'une coopérative agricole de proximité
-Système d'authentification inclus dans le logiciel
 
-Linkedwith
-=======
-CakeCocagne: https://github.com/zpartakov/cocagne (cette version est faite pour le cms Joomla!)
+- gestion des points de distribution
+- gestion des demies-journées de travail
+- gestion des produits sur commande
+- ERP (Progiciel de gestion intégré - Dolibarr) adapté pour une ACP
+- une passerelle CMS (Système de gestion de contenu - concrete5)
+- un outil global d'administration (cakePhp)
+- un système de commande de produits (panier électronique)
 
-Required
-=======
-AMP (Apache, MySQL et PHP)
-cakePHP 1.3 https://github.com/cakephp/cakephp/tags
-alaxos cakephp plugin http://www.alaxos.ch/blaxos/pages/view/plugin_alaxos
+## English
+Software for administration of a contractual of a contract farming organisation
+
+- ERP (Enterprise resource planning - Dolibarr) adapted for a contract farming organisation
+- link with a CMS (Content Management System - concrete5)
+- a eCommerce WebShop
+- a global intranet admin tool (CakePHP).
+
+## Téléchargement/Download
+https://gitlab.com/zpartakov/cakeACP
+
+## Required 
+- Apache2 http://apache.org/
+- MySQL5 https://www.mysql.com/downloads/
+- PHP5 http://www.php.net/
+- Dolibarr4 https://github.com/Dolibarr/dolibarr
+- CakePhp1.3 https://github.com/cakephp/cakephp/tags
+- alaxos cakephp plugin http://www.alaxos.ch/blaxos/pages/view/plugin_alaxos
+- jquery http://jquery.com/
+
+## Suggested CMS:
+- Concrete5.6 http://www.concrete5.org/
+
+#####################################################################
+# @package cakeACP                                                   #
+# @version $Id: 1.0.1                                               #
+# @author Fred Radeff fradeff@akademia.ch                           #
+# @copyright (c) 2017 Fred Radeff, www.radeff.red                   #
+# @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later #
+#####################################################################

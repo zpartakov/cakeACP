@@ -6,7 +6,7 @@ class Livreur extends AppModel {
 	var $belongsTo = array(
 		'JosUser' => array(
 			'className' => 'JosUser',
-			'foreignKey' => 'User.id',
+			'foreignKey' => 'jos_user_id',
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''

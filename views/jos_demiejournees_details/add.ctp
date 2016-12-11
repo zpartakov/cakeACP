@@ -6,8 +6,6 @@
 		echo $form->input('date');
 		echo $form->input('user');
 		echo $form->input('npers');
-		echo $form->input('voiture', array('style'=>'width: 30px','label'=>'Co-voiturage proposé? (1=oui, 0=non)'));
-		
 		echo $form->input('rem');
 	?>
 	</fieldset>

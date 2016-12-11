@@ -253,7 +253,7 @@ if($numberOfRows<1){
 }
 
 echo "<h1>Administration des demi-journées
-<a href=\"print/\"><img src=\"http://www.p2r.ch/cms/images/cake/print.jpg\" alt=\"imprimer\" title=\"imprimer\"></a>
+<a href=\"print/\"><img src=\"http://www.les-jardins-de-cocagne.ch/cms/images/cake/print.jpg\" alt=\"imprimer\" title=\"imprimer\"></a>
 </h1>
 <form method=\"GET\"><select name=\"def_jours_affiches\">
  <option value=\"\">--- Nombre de jours affichés (defaut= " .$def_jours_affiches .")--- </option>
@@ -310,22 +310,22 @@ while($i<$numberOfRows) {
 
 		$debut= "<tr><td style=\"background-color: " .$bgColor ."\">".datefr_short($thisDate)."</td><td  style=\"background-color: " .$bgColor ."\">";
 		#$debut.="<br>BEGIN_LINE<br>";	 //test
-		$fin='<br><a href="view/' .$thisId .'"><img src="http://www.p2r.ch/cms/images/cake/loupe.png" alt="Voir" title="Voir"></a>';
-		#$fin.='&nbsp;<a href="edit/' .$thisId .'"><img src="http://www.p2r.ch/cms/images/cake/edit.png" alt="Modifier" title="Modifier"></a>';
-		#$fin.='&nbsp;<a href="delete/' .$thisId .'"><img src="http://www.p2r.ch/cms/images/cake/delete.png" alt="effacer" title="effacer"></a>';
+		$fin='<br><a href="view/' .$thisId .'"><img src="http://www.les-jardins-de-cocagne.ch/cms/images/cake/loupe.png" alt="Voir" title="Voir"></a>';
+		#$fin.='&nbsp;<a href="edit/' .$thisId .'"><img src="http://www.les-jardins-de-cocagne.ch/cms/images/cake/edit.png" alt="Modifier" title="Modifier"></a>';
+		#$fin.='&nbsp;<a href="delete/' .$thisId .'"><img src="http://www.les-jardins-de-cocagne.ch/cms/images/cake/delete.png" alt="effacer" title="effacer"></a>';
 	}elseif(ereg("14:00:00$",$thisDate))	{
 		$debut ="</td><td style=\"background-color: " .$bgColor ."\">";
 		#$debut.="<br>NEWCOL<br>";	 //test
-		$fin='<br><a href="view/' .$thisId .'"><img src="http://www.p2r.ch/cms/images/cake/loupe.png" alt="Voir" title="Voir"></a>';
-		#$fin.='&nbsp;<a href="edit/' .$thisId .'"><img src="http://www.p2r.ch/cms/images/cake/edit.png" alt="Modifier" title="Modifier"></a>';
-		#$fin.='&nbsp;<a href="delete/' .$thisId .'"><img src="http://www.p2r.ch/cms/images/cake/delete.png" alt="effacer" title="effacer"></a>';
+		$fin='<br><a href="view/' .$thisId .'"><img src="http://www.les-jardins-de-cocagne.ch/cms/images/cake/loupe.png" alt="Voir" title="Voir"></a>';
+		#$fin.='&nbsp;<a href="edit/' .$thisId .'"><img src="http://www.les-jardins-de-cocagne.ch/cms/images/cake/edit.png" alt="Modifier" title="Modifier"></a>';
+		#$fin.='&nbsp;<a href="delete/' .$thisId .'"><img src="http://www.les-jardins-de-cocagne.ch/cms/images/cake/delete.png" alt="effacer" title="effacer"></a>';
 
 	}elseif(ereg("17:00:00$",$thisDate))	{
 		$debut ="</td><td style=\"background-color: " .$bgColor ."\">";
 		#$debut.="<br>NEWCOL<br>";	 //test
-		$fin='<br><a href="view/' .$thisId .'"><img src="http://www.p2r.ch/cms/images/cake/loupe.png" alt="Voir" title="Voir"></a>';
-		#$fin.='&nbsp;<a href="edit/' .$thisId .'"><img src="http://www.p2r.ch/cms/images/cake/edit.png" alt="Modifier" title="Modifier"></a>';
-		#$fin.='&nbsp;<a href="delete/' .$thisId .'"><img src="http://www.p2r.ch/cms/images/cake/delete.png" alt="effacer" title="effacer"></a>';
+		$fin='<br><a href="view/' .$thisId .'"><img src="http://www.les-jardins-de-cocagne.ch/cms/images/cake/loupe.png" alt="Voir" title="Voir"></a>';
+		#$fin.='&nbsp;<a href="edit/' .$thisId .'"><img src="http://www.les-jardins-de-cocagne.ch/cms/images/cake/edit.png" alt="Modifier" title="Modifier"></a>';
+		#$fin.='&nbsp;<a href="delete/' .$thisId .'"><img src="http://www.les-jardins-de-cocagne.ch/cms/images/cake/delete.png" alt="effacer" title="effacer"></a>';
 
 	}elseif(ereg("18:00:00$",$thisDate))	{
 		echo "";
@@ -333,9 +333,9 @@ while($i<$numberOfRows) {
 
 		$fin="</td>";
 
-		$fin='<br><a href="view/' .$thisId .'"><img src="http://www.p2r.ch/cms/images/cake/loupe.png" alt="Voir" title="Voir"></a>';
-		#$fin.='&nbsp;<a href="edit/' .$thisId .'"><img src="http://www.p2r.ch/cms/images/cake/edit.png" alt="Modifier" title="Modifier"></a>';
-		#$fin.='&nbsp;<a href="delete/' .$thisId .'"><img src="http://www.p2r.ch/cms/images/cake/delete.png" alt="effacer" title="effacer"></a>';
+		$fin='<br><a href="view/' .$thisId .'"><img src="http://www.les-jardins-de-cocagne.ch/cms/images/cake/loupe.png" alt="Voir" title="Voir"></a>';
+		#$fin.='&nbsp;<a href="edit/' .$thisId .'"><img src="http://www.les-jardins-de-cocagne.ch/cms/images/cake/edit.png" alt="Modifier" title="Modifier"></a>';
+		#$fin.='&nbsp;<a href="delete/' .$thisId .'"><img src="http://www.les-jardins-de-cocagne.ch/cms/images/cake/delete.png" alt="effacer" title="effacer"></a>';
 
 		$fin.="</tr>";
 	}
@@ -375,7 +375,7 @@ if($sqlUserN>0) {
 	$j=0;
 	while($j<$sqlUserN){
 		$thisUser = MYSQL_RESULT($sqlUser,$j,"user");
-		#$user.="<img src=\"http://www.p2r.ch/cms/images/stories/fruit/strawberry.jpg\" width=\"35\" height=\"25\">";
+		#$user.="<img src=\"http://www.les-jardins-de-cocagne.ch/cms/images/stories/fruit/strawberry.jpg\" width=\"35\" height=\"25\">";
 		#$user.=($j+1) .":";
 		$user.="<li>";
 		$user.=$thisUser;

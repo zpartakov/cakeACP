@@ -1,0 +1,30 @@
+/* PRINT CSS */
+
+* {
+	margin:0;
+	padding:0;
+}
+
+/** General Style Info **/
+body {
+	background: #003d4c;
+	color: #fff;
+	font-family: "frutiger linotype", "lucida grande", "verdana", sans-serif;
+	font-size: 14px;
+	margin: 0;
+	padding: 2%;
+}
+
+
+/*div classes to hide on printing */
+#leftnav, #header, #footer, .retour, #cakephp-global-navigation, .exectime, .actions, .globalsearch, .project_view_actions, .oktask {
+display: none;
+}
+
+/* put too much mess! */
+/*a:link:after {
+   content: " (" attr(href) ") ";
+   font-size: 50%;
+   font-color: #4D4D4D;
+   }
+*/

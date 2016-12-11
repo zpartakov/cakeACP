@@ -2,18 +2,14 @@
 class CocagneLegumesController extends AppController {
 
 	var $name = 'CocagneLegumes';
-		var $components = array('Auth');
-	
 		#criteres de tri
 	var $paginate = array(
-        'limit' => 100,
+        'limit' => 1000,
         'order' => array(
             'CocagneLegume.legume' => 'asc'
         )
     );
 	function index() {
-				eject_non_admin(); //on autorise pas les non-administrateurs
-		
 		$this->CocagneLegume->recursive = 0;
 					if($this->data['CocagneLegume']['q']) {
 					$input = $this->data['CocagneLegume']['q']; 
@@ -30,8 +26,6 @@ class CocagneLegumesController extends AppController {
 	}
 
 	function view($id = null) {
-				eject_non_admin(); //on autorise pas les non-administrateurs
-		
 		if (!$id) {
 			$this->Session->setFlash(__('Invalid cocagne legume', true));
 			$this->redirect(array('action' => 'index'));
@@ -40,8 +34,6 @@ class CocagneLegumesController extends AppController {
 	}
 
 	function add() {
-				eject_non_admin(); //on autorise pas les non-administrateurs
-		
 		if (!empty($this->data)) {
 			$this->CocagneLegume->create();
 			if ($this->CocagneLegume->save($this->data)) {
@@ -54,8 +46,6 @@ class CocagneLegumesController extends AppController {
 	}
 
 	function edit($id = null) {
-				eject_non_admin(); //on autorise pas les non-administrateurs
-		
 		if (!$id && empty($this->data)) {
 			$this->Session->setFlash(__('Invalid cocagne legume', true));
 			$this->redirect(array('action' => 'index'));
@@ -74,8 +64,6 @@ class CocagneLegumesController extends AppController {
 	}
 
 	function delete($id = null) {
-				eject_non_admin(); //on autorise pas les non-administrateurs
-		
 		if (!$id) {
 			$this->Session->setFlash(__('Invalid id for cocagne legume', true));
 			$this->redirect(array('action'=>'index'));
@@ -86,6 +74,13 @@ class CocagneLegumesController extends AppController {
 		}
 		$this->Session->setFlash(__('Cocagne legume was not deleted', true));
 		$this->redirect(array('action' => 'index'));
+	}
+	
+/* version imprimable de l'envyclopédie des légumes pour en faire un pdf */
+	function book() {
+		$this->layout = 'printable';
+		$this->CocagneLegume->recursive = 0;
+		$this->set('cocagneLegumes', $this->paginate());
 	}
 }
 ?>

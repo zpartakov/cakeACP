@@ -1,0 +1,189 @@
+<?php
+//Configure::write('debug', 2);
+Configure::write('debug', 0);
+?>
+<style>
+td {
+	text-align: right;
+	border: thin solid;
+	}
+	</style>
+	
+<div class="recoltes view">
+
+	<h2><?php ___('recolte');?></h2>
+
+	<?php
+	echo $this->element('toolbar/toolbar', array('plugin' => 'alaxos', 'add' => true, 'list' => true, 'edit_id' => $recolte['Recolte']['id'], 'delete_id' => $recolte['Recolte']['id'], 'delete_text' => ___('do you really want to delete this recolte ?', true)));
+	?>
+
+	<table border="0" class="view">
+	<tr>
+		<td>
+			<?php ___('date'); ?>
+		</td>
+		<td>
+			<?php echo DateTool :: sql_to_date($recolte['Recolte']['date']); ?>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<?php ___('lib'); ?>
+		</td>
+		<td>
+			<?php echo $recolte['Recolte']['lib']; ?>
+		</td>
+	</tr>
+
+	<tr>
+		<td>
+			<?php ___('nb gp'); ?>
+		</td>
+		<td>
+			<?php echo $recolte['Recolte']['nb_GP']; ?>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<?php ___('nb pp'); ?>
+		</td>
+		<td>
+			<?php echo $recolte['Recolte']['nb_PP']; ?>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<?php ___('date mod'); ?>
+		</td>
+		<td>
+			<?php echo $recolte['Recolte']['date_mod']; ?>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<?php ___('rem'); ?>
+		</td>
+		<td>
+			<?php echo $recolte['Recolte']['rem']; ?>
+		</td>
+		
+	
+		
+	</tr>
+	</table>
+</div>
+<?php
+#print_r($Recolteslegume);
+#debug($recolteslegumes);
+	$i = 0;
+#	echo "id recolte: " .$recolte['Recolte']['id'];
+
+$sql="SELECT * FROM recolteslegumes AS rl, legumes AS l, unites AS u  	 
+WHERE recolte_id=".$recolte['Recolte']['id'] ." 
+AND rl.legume_id=l.id 
+AND rl.unite_id=u.id 
+ORDER BY l.lib
+";
+
+$sql="SELECT * FROM recolteslegumes AS rl, legumes AS l, unites AS u  	 
+WHERE recolte_id=".$recolte['Recolte']['id'] ." 
+AND rl.legume_id=l.id 
+ORDER BY l.lib
+";
+
+//echo "<pre>" .nl2br($sql) ."</pre>"; //tests
+
+$sql=mysql_query($sql);
+if(!$sql) {
+	echo "<br>SQL error: ".mysql_error() ."<br>"; exit;
+}
+if(mysql_num_rows($sql)<1) {
+	echo "Pas encore de légumes pour cette récolte";
+		echo "<p><a href=\"../../recolteslegumes/add?recolte=" .$recolte['Recolte']['id']."\">Ajouter des légumes à cette récolte OLD</a></p>";
+		echo "<p><a href=\"../../recolteslegumes/add1?recolte=" .$recolte['Recolte']['id']."\">Ajouter des légumes à cette récolte</a></p>";
+
+} else {
+	echo "<h1><a href=\"../../recolteslegumes\">Légumes récoltés</a></h1>";
+		#echo "<p><a href=\"../../recolteslegumes/add?recolte=" .$recolte['Recolte']['id']."\">Ajouter des légumes à cette récolte OLD</a></p>";
+		echo "<p><a href=\"../../recolteslegumes/add1?recolte=" .$recolte['Recolte']['id']."\">Ajouter des légumes à cette récolte</a></p>";	echo "<em>Liste à compléter selon les indications de Claude</em><br />";
+	echo "<table>
+	<tr><th>Légume</th><th>Unité</th><th>QtéGP</th><th>QtéPP</th><th>QtéTotal</th><th>Prix moyen</th><th>Valeur</th></tr>";
+	$i=0;
+	while($i<mysql_num_rows($sql)) {
+		if(($i/2)==(intval($i/2))) {
+			$class="altrow";
+		} else {
+			$class="";
+		}
+	if(mysql_result($sql,$i,'u.lib')=="kg"){
+		$diviseur=1000;
+ }elseif (mysql_result($sql,$i,'u.lib')=="pièce"){
+		$diviseur=1;
+	} 
+
+	echo "<tr class=\"".$class ."\"><td>";
+		echo $html->link(mysql_result($sql,$i,'l.lib'),'/recolteslegumes/edit/'.mysql_result($sql,$i,'rl.id'));
+		echo  "</td><td>";
+		echo mysql_result($sql,$i,'u.lib');
+		echo  "</td><td>";
+		if(mysql_result($sql,$i,'rl.kg_pce_par_cornet_GP')>0){
+			$qGP=mysql_result($sql,$i,'rl.kg_pce_par_cornet_GP');
+		} elseif (mysql_result($sql,$i,'rl.cornets_par_caisse_GP')>0){
+			$qGP=mysql_result($sql,$i,'rl.cornets_par_caisse_GP');
+		} else {
+			$qGP=0;
+		}			
+		if(mysql_result($sql,$i,'rl.kg_pce_par_cornet_PP')>0){
+			$qPP=mysql_result($sql,$i,'rl.kg_pce_par_cornet_PP');
+		} elseif (mysql_result($sql,$i,'rl.cornets_par_caisse_PP')>0){
+			$qPP=mysql_result($sql,$i,'rl.cornets_par_caisse_PP');
+		} else {
+			$qPP=0;
+		}
+		echo intval(($recolte['Recolte']['nb_GP']*$qGP)/$diviseur);
+		echo "</td><td>";
+		echo intval(($recolte['Recolte']['nb_PP']*$qPP)/$diviseur);
+		echo "</td><td>";
+		
+		$q=intval((($recolte['Recolte']['nb_GP']*$qGP)+($recolte['Recolte']['nb_PP']*$qPP))/$diviseur);
+
+		echo $q;
+		echo "</td><td>";
+		//calcul prix moyen
+		$prixminPER=mysql_result($sql,$i,'rl.prixminPER');
+		$prixmaxPER=mysql_result($sql,$i,'rl.prixmaxPER');
+		$prixminBIO=mysql_result($sql,$i,'rl.prixminBIO');
+		$prixmaxBIO=mysql_result($sql,$i,'rl.prixmaxBIO');
+		$PER=($prixminPER+$prixmaxPER)/2;
+		$BIO=($prixminBIO+$prixmaxBIO)/2;
+		$pm=($PER+$BIO)/2;
+		echo intval($pm*100)/100;
+		echo "</td><td>";
+		echo intval($pm*$q) .".-";
+			#echo "</td><td>";
+		?>
+<!--		<div class="actions">
+			<?php echo $this->Html->link($this->Html->image('/alaxos/img/toolbar/small_drop.png'), array('action' => '../recolteslegumes/delete', mysql_result($sql,$i,'rl.id')), array('escape' => false), sprintf(___("are you sure you want to delete '%s' ?", true), mysql_result($sql,$i,'rl.id'))); ?>-->
+<?
+	echo "</td>";
+	echo "</tr>";
+		$i++;
+	}
+		echo "</table>";
+
+}
+/*	foreach ($recolteslegumes as $recolteslegume):
+#echo $Recoltelegume['Recolte']['legume_id']; 
+#echo $Recoltelegume['Recolteslegume']['legume_id']; 
+#echo $recoltelegume['recoltelegume']['legume_id']; 
+			
+			#echo $this->Html->link($recolteslegume['Legume']['lib'], array('controller' => 'legumes', 'action' => 'view', $recolteslegume['Legume']['id'])); 
+			 echo $recolteslegume['Recolte']['Legume']['lib']."<br>";
+
+#echo $Recoltelegume['Recolteslegume']['legume_id']; 
+$i++;
+echo "<br>";
+endforeach;
+*/
+
+?>

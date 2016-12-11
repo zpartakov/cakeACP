@@ -3,7 +3,7 @@ class JosUser extends AppModel {
 
 	var $name = 'JosUser';
 var $displayField = 'username';
-var $useTable = 'dqk8n_users';
+
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
 	var $hasMany = array(
 		'JosDemiejourneesDetail' => array(
@@ -20,7 +20,6 @@ var $useTable = 'dqk8n_users';
 			'counterQuery' => ''
 		)
 	);
-	
 
 }
 ?>

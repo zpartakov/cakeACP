@@ -1,0 +1,601 @@
+msgid "the recolteslegume has been saved"
+msgstr "La récolte pour ce légume a été enregistrée"
+
+
+msgid "recolte_id"
+msgstr "Récolte"
+
+msgid "legume_id"
+msgstr "Légume"
+
+msgid "unite_id"
+msgstr "Unité"
+
+msgid "nb_caisse"
+msgstr "Nombre de caisses"
+
+msgid "par_caisse_kg_pce"
+msgstr "Kg/pièces par caisse"
+
+msgid "par_caisse_reste"
+msgstr "Reste par caisse"
+
+msgid "kg_pce_total_par_lieu"
+msgstr "Kg/pièces total par lieu"
+
+msgid "recolte_kg_piece_total"
+msgstr "Kg/pièces total récolte"
+
+msgid "nb_caisses_GP"
+msgstr "Nombre de caisses grandes parts"
+
+msgid "nb_caisses_PP"
+msgstr "Nombre de caisses petites parts"
+
+msgid "cornets_par_caisse_GP"
+msgstr "Cornets par caisse grandes parts"
+
+msgid "cornets_par_caisse_PP"
+msgstr "Cornets par caisse petites parts"
+
+msgid "kg_pce_par_cornet_GP"
+msgstr "g/pièces par cornet grandes parts"
+
+msgid "kg_pce_par_cornet_PP"
+msgstr "g/pièces par cornet petites parts"
+
+msgid "remarques"
+msgstr "Remarque"
+
+msgid "you are now logged in !"
+msgstr "vous êtes maintenant logué !"
+
+msgid "lib"
+msgstr "Libellé"
+
+msgid "add recolte"
+msgstr "Ajouter une récolte"
+
+msgid "nb_GP"
+msgstr "Nombre de grandes parts"
+
+msgid "nb_PP"
+msgstr "Nombre de petites parts"
+
+msgid "rem"
+msgstr "Remarque"
+
+
+msgid "add recolteslegume"
+msgstr "Ajouter des légumes à une récolte"
+
+
+msgid "the recolte has been saved"
+msgstr "La récolte a bien été enregistrée"
+
+msgid "invalid id for User"
+msgstr "identifiant d'utilisateur invalide"
+
+
+
+msgid "the user has been saved"
+msgstr "utilisateur sauvé"
+
+
+
+msgid "the user could not be saved. Please, try again."
+msgstr "l'utilisateur n'a pas pu être sauvé. Veuillez SVP essayer à nouveau."
+
+
+msgid "invalid user"
+msgstr "utilisateur invalide"
+
+
+msgid "invalid id for user"
+msgstr "identifiant d'utilisateur invalide"
+
+
+msgid "user deleted"
+msgstr "utilisateur effacé"
+
+
+msgid "user was not deleted"
+msgstr "l'utilisateur n'a pas pu être effacé"
+
+
+msgid "Users deleted"
+msgstr "utilisateurs effacés"
+
+
+msgid "Users were not deleted"
+msgstr "les utilisateurs n'ont pas pu être effacés"
+
+
+msgid "No user to delete was found"
+msgstr "aucun utilisateur à effacer trouvé"
+
+
+msgid "invalid id for Member"
+msgstr "identifiant de membre invalide"
+
+
+
+msgid "the member has been saved"
+msgstr "membre sauvé"
+
+
+
+msgid "the member could not be saved. Please, try again."
+msgstr "le membre n'a pas pu être sauvé. Veuillez SVP essayer à nouveau."
+
+
+msgid "invalid member"
+msgstr "membre invalide"
+
+
+msgid "invalid id for member"
+msgstr "identifiant de membre invalide"
+
+
+msgid "member deleted"
+msgstr "membre effacé"
+
+
+msgid "member was not deleted"
+msgstr "le membre n'a pas pu être effacé"
+
+
+msgid "Members deleted"
+msgstr "membres effacés"
+
+
+msgid "Members were not deleted"
+msgstr "les membres n'ont pas pu être effacés"
+
+
+msgid "No member to delete was found"
+msgstr "aucun membre à effacer trouvé"
+
+
+msgid "invalid id for Role"
+msgstr "identifiant de rôle invalide"
+
+
+
+msgid "the role has been saved"
+msgstr "rôle sauvé"
+
+
+
+msgid "the role could not be saved. Please, try again."
+msgstr "le rôle n'a pas pu être sauvé. Veuillez SVP essayer à nouveau."
+
+
+msgid "invalid role"
+msgstr "rôle invalide"
+
+
+msgid "invalid id for role"
+msgstr "identifiant de rôle invalide"
+
+
+msgid "role deleted"
+msgstr "rôle effacé"
+
+
+msgid "role was not deleted"
+msgstr "le rôle n'a pas pu être effacé"
+
+
+msgid "Roles deleted"
+msgstr "roles effacés"
+
+
+msgid "Roles were not deleted"
+msgstr "les rôles n'ont pas pu être effacés"
+
+
+msgid "No role to delete was found"
+msgstr "aucun rôle à effacer trouvé"
+
+
+msgid "invalid id for Insurance"
+msgstr "identifiant d'assurance invalide"
+
+
+
+msgid "the insurance has been saved"
+msgstr "assurance sauvée"
+
+
+
+msgid "the insurance could not be saved. Please, try again."
+msgstr "l'assurance n'a pas pu être sauvée. Veuillez SVP essayer à nouveau."
+
+
+msgid "invalid insurance"
+msgstr "assurance invalide"
+
+
+msgid "invalid id for insurance"
+msgstr "identifiant d'assurance invalide"
+
+
+msgid "insurance deleted"
+msgstr "assurance effacée"
+
+
+msgid "insurance was not deleted"
+msgstr "l'assurance n'a pas pu être effacée"
+
+
+msgid "Insurances deleted"
+msgstr "assurances effacées"
+
+
+msgid "Insurances were not deleted"
+msgstr "les assurances n'ont pas pu être effacées"
+
+
+msgid "No insurance to delete was found"
+msgstr "aucune assurance à effacer trouvée"
+
+
+msgid "invalid id for Invoice"
+msgstr "identifiant de facture invalide"
+
+
+
+msgid "the invoice has been saved"
+msgstr "facture sauvée"
+
+
+
+msgid "the invoice could not be saved. Please, try again."
+msgstr "la facture n'a pas pu être sauvée. Veuillez SVP essayer à nouveau."
+
+
+msgid "invalid invoice"
+msgstr "facture invalide"
+
+
+msgid "invalid id for invoice"
+msgstr "identifiant de facture invalide"
+
+
+msgid "invoice deleted"
+msgstr "facture effacée"
+
+
+msgid "invoice was not deleted"
+msgstr "la facture n'a pas pu être effacée"
+
+
+msgid "Invoices deleted"
+msgstr "factures effacées"
+
+
+msgid "Invoices were not deleted"
+msgstr "les factures n'ont pas pu être effacées"
+
+
+msgid "No invoice to delete was found"
+msgstr "aucune facture à effacer trouvée"
+
+
+msgid "notempty"
+msgstr "le champ ne peut pas être vide"
+
+
+msgid "numeric"
+msgstr "la valeur doit être numérique"
+
+
+msgid "invalid email"
+msgstr "email invalide"
+
+
+msgid "You are not authorized to access that location"
+msgstr "Vous n'êtes pas autorisé à accéder à cette adresse"
+
+
+msgid "logout"
+msgstr "déconnexion"
+
+
+msgid "login"
+msgstr "login"
+
+
+msgid "CakePHP: the rapid development php framework"
+msgstr "CakePHP: le framework de développement rapide PHP"
+
+
+msgid "users"
+msgstr "utilisateurs"
+
+
+
+msgid "role"
+msgstr "rôle"
+
+
+
+
+msgid "username"
+msgstr "nom d'utilisateur"
+
+
+
+
+msgid "firstname"
+msgstr "prénom"
+
+
+
+
+msgid "lastname"
+msgstr "nom"
+
+
+
+
+msgid "email"
+msgstr "email"
+
+
+msgid "last_login"
+msgstr "dernière connexion"
+
+
+
+
+msgid "enabled"
+msgstr "actif"
+
+
+
+msgid "created"
+msgstr "créé"
+
+
+
+msgid "modified"
+msgstr "modifié"
+
+
+msgid "Actions"
+msgstr "Actions"
+
+
+msgid "search"
+msgstr "chercher"
+
+
+
+msgid "created by %s"
+msgstr "créé par %s"
+
+
+
+msgid "modified by %s"
+msgstr "modifié par %s"
+
+
+
+msgid "are you sure you want to delete '%s' ?"
+msgstr "voulez-vous vraiment effacer '%s' ?"
+
+
+msgid "previous"
+msgstr "précédent"
+
+
+msgid "next"
+msgstr "suivant"
+
+
+msgid "user"
+msgstr "utilisateur"
+
+
+msgid "do you really want to delete this user ?"
+msgstr "voulez-vous vraiment effacer cet utilisateur ?"
+
+
+msgid "last login"
+msgstr "dernière connexion"
+
+
+msgid "admin add user"
+msgstr "nouvel utilisateur"
+
+
+msgid "role_id"
+msgstr "rôle"
+
+
+msgid "password"
+msgstr "mot de passe"
+
+
+msgid "submit"
+msgstr "envoyer"
+
+
+msgid "Please enter your credential below"
+msgstr "Veuillez saisir vos identifiant et mot de passe"
+
+
+
+msgid "you are logged in as '%s'"
+msgstr "vous êtes connectés en temps que '%s'"
+
+
+msgid "admin edit user"
+msgstr "modification d'un utilisateur"
+
+
+
+
+msgid "update"
+msgstr "modifier"
+
+
+
+msgid "insurances"
+msgstr "assurances"
+
+
+
+
+
+
+
+
+
+msgid "name"
+msgstr "nom"
+
+
+
+
+msgid "insurance"
+msgstr "assurance"
+
+
+msgid "do you really want to delete this insurance ?"
+msgstr "voulez-vous vraiment effacer cette assurance ?"
+
+
+msgid "admin add insurance"
+msgstr "nouvelle assurance"
+
+
+msgid "admin edit insurance"
+msgstr "modification d'une assurance"
+
+
+
+msgid "invoices"
+msgstr "factures"
+
+
+msgid "members"
+msgstr "membres"
+
+
+
+msgid "roles"
+msgstr "rôles"
+
+
+msgid "ACL"
+msgstr "ACL"
+
+
+
+
+
+msgid "order"
+msgstr "ordre"
+
+
+msgid "do you really want to delete this role ?"
+msgstr "voulez-vous vraiment effacer ce rôle ?"
+
+
+msgid "admin add role"
+msgstr "nouveau rôle"
+
+
+msgid "admin edit role"
+msgstr "modification d'un rôle"
+
+
+
+msgid "member"
+msgstr "membre"
+
+
+
+msgid "reference_number"
+msgstr "numéro de référence"
+
+
+
+
+msgid "description"
+msgstr "description"
+
+
+
+
+msgid "amount"
+msgstr "montant"
+
+
+
+msgid "sent_to_insurance"
+msgstr "date d'envoi à l'assurance"
+
+
+
+
+msgid "refund"
+msgstr "montant remboursé"
+
+
+msgid "invoice"
+msgstr "facture"
+
+
+msgid "do you really want to delete this invoice ?"
+msgstr "voulez-vous vraiment effacer cette facture ?"
+
+
+msgid "reference number"
+msgstr "numéro de référence"
+
+
+msgid "sent to insurance"
+msgstr "date d'envoi à l'assurance"
+
+
+msgid "refund date"
+msgstr "date de remboursement"
+
+
+msgid "admin add invoice"
+msgstr "nouvelle facture"
+
+
+msgid "member_id"
+msgstr "membre"
+
+
+msgid "insurance_id"
+msgstr "assurance"
+
+
+msgid "refund_date"
+msgstr "date de remboursement"
+
+
+msgid "admin edit invoice"
+msgstr "modification d'une facture"
+
+
+msgid "do you really want to delete this member ?"
+msgstr "voulez-vous vraiment effacer ce membre ?"
+
+
+msgid "admin add member"
+msgstr "nouveau membre"
+
+
+msgid "admin edit member"
+msgstr "modification d'un membre"
+
+
+

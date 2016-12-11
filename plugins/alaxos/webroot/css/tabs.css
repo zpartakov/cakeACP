@@ -1,0 +1,39 @@
+@CHARSET "UTF-8";
+
+.tabs_container
+{
+    margin-top:15px;
+    border-bottom:1px solid #000000;
+}
+.tabs_container ul
+{
+    margin:0px; padding:0px;
+    margin-top:5px;  
+    margin-bottom:8px;
+}
+.tabs_container ul li
+{
+    list-style:none;  
+    display:inline;
+    margin-right:5px;
+}
+.tabs_container ul li a
+{
+    color: #888888;  
+    padding:8px 14px 8px 14px;  
+    text-decoration:none;  
+    border:1px solid #000000;   
+}
+.tabs_container ul li a:hover
+{
+    background-image:none;
+    color:#000000;
+    border-color:#000000;
+}
+.tabs_container ul li.selected a 
+{  
+    background-color:#ffffff;  
+    background-image:none;
+    color:#000000;   
+    border-bottom: 1px solid #ffffff;  
+}

@@ -1,5 +1,6 @@
 <div class="cocagneRecettes index">
 	<h2><?php __('Cocagne Recettes');?></h2>
+		<li><?php echo $this->Html->link(__('New Cocagne Recette', true), array('action' => 'add')); ?></li>
 	<!-- begin search form -->
  <table>
 	 <tr>
@@ -18,13 +19,13 @@
 <!-- end search form -->
 	<table cellpadding="0" cellspacing="0">
 	<tr>
-			<th><?php echo $this->Paginator->sort('id');?></th>
+	<!--		<th><?php echo $this->Paginator->sort('id');?></th>-->
 			<th><?php echo $this->Paginator->sort('titre');?></th>
-			<th><?php echo $this->Paginator->sort('ingredients');?></th>
-			<th><?php echo $this->Paginator->sort('preparation');?></th>
+	<!-- 		<th><?php echo $this->Paginator->sort('ingredients');?></th>
+			<th><?php echo $this->Paginator->sort('preparation');?></th> -->
 			<th><?php echo $this->Paginator->sort('date');?></th>
 			<th><?php echo $this->Paginator->sort('genre');?></th>
-			<th><?php echo $this->Paginator->sort('image');?></th>
+	<!-- 		<th><?php echo $this->Paginator->sort('image');?></th> -->
 			<th class="actions"><?php __('Actions');?></th>
 	</tr>
 	<?php
@@ -36,13 +37,13 @@
 		}
 	?>
 	<tr<?php echo $class;?>>
-		<td><?php echo $cocagneRecette['CocagneRecette']['id']; ?>&nbsp;</td>
+<!-- 		<td><?php echo $cocagneRecette['CocagneRecette']['id']; ?>&nbsp;</td>-->
 		<td><?php echo $cocagneRecette['CocagneRecette']['titre']; ?>&nbsp;</td>
-		<td><?php echo $cocagneRecette['CocagneRecette']['ingredients']; ?>&nbsp;</td>
-		<td><?php echo $cocagneRecette['CocagneRecette']['preparation']; ?>&nbsp;</td>
+<!-- 		<td><?php echo $cocagneRecette['CocagneRecette']['ingredients']; ?>&nbsp;</td>
+		<td><?php echo $cocagneRecette['CocagneRecette']['preparation']; ?>&nbsp;</td>-->
 		<td><?php echo $cocagneRecette['CocagneRecette']['date']; ?>&nbsp;</td>
 		<td><?php echo $cocagneRecette['CocagneRecette']['genre']; ?>&nbsp;</td>
-		<td><?php echo $cocagneRecette['CocagneRecette']['image']; ?>&nbsp;</td>
+	<!--	<td><?php echo $cocagneRecette['CocagneRecette']['image']; ?>&nbsp;</td> -->
 		<td class="actions">
 			<?php echo $this->Html->link(__('View', true), array('action' => 'view', $cocagneRecette['CocagneRecette']['id'])); ?>
 			<?php echo $this->Html->link(__('Edit', true), array('action' => 'edit', $cocagneRecette['CocagneRecette']['id'])); ?>

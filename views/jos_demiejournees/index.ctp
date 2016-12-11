@@ -1,10 +1,7 @@
 <div class="josDemiejournees index">
 <h2><?php __('JosDemiejournees');?></h2>
-<li><?php echo $this->Html->link(__('Nouvelle demi-journée \(entrée manuelle\))', true), array('action' => 'add')); ?></li>
 <p>
 <?php
-App::import('Lib', 'functions'); //imports app/libs/functions
-
 echo $paginator->counter(array(
 'format' => __('Page %page% of %pages%, showing %current% records out of %count% total, starting on record %start%, ending on %end%', true)
 ));
@@ -43,6 +40,9 @@ $timestamp = mktime (0, 0, 0, $mois, $jour, $annee);
 	<th><?php echo $paginator->sort('date');?></th>
 	<th><?php echo $paginator->sort('nplaces');?></th>
 	<th><?php echo $paginator->sort('statut');?></th>
+	    <th><?php echo $paginator->sort('REMARQUES');?></th>
+    <th>actions</th>
+
 </tr>
 <?php
 $aujourdhui=date("U");
@@ -53,14 +53,14 @@ foreach ($josDemiejournees as $josDemiejournee):
 	if ($i++ % 2 == 0) {
 		$class = ' class="altrow"';
 	}
-			if(utime($josDemiejournee['JosDemiejournee']['date'])>$aujourdhui) {
+        if(strtotime($josDemiejournee['JosDemiejournee']['date'])>$aujourdhui) {
 	
 ?>
 	<tr<?php echo $class;?>>
 
 		<td>
 			<?php 
-			echo datefr_short($josDemiejournee['JosDemiejournee']['date']); ?>
+			echo mysql_DateTime($josDemiejournee['JosDemiejournee']['date']); ?>
 		</td>
 
 		<td>
@@ -69,11 +69,24 @@ foreach ($josDemiejournees as $josDemiejournee):
 		<td>
 			<?php changestatutDJ($josDemiejournee['JosDemiejournee']['id'],$josDemiejournee['JosDemiejournee']['statut']); ?>
 		</td>
-<td class="actions">
-			<?php echo $this->Html->link(__('View', true), array('action' => 'view', $josDemiejournee['JosDemiejournee']['id'])); ?>
-			<?php echo $this->Html->link(__('Edit', true), array('action' => 'edit', $josDemiejournee['JosDemiejournee']['id'])); ?>
-			<?php echo $this->Html->link(__('Delete', true), array('action' => 'delete', $josDemiejournee['JosDemiejournee']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $josDemiejournee['JosDemiejournee']['id'])); ?>
-		</td>
+<?php
+    if(strlen($josDemiejournee['JosDemiejournee']['REMARQUES'])>0) {
+        $class = ' class="remarques_dj"';
+    } else {
+        $class="";
+    }
+
+?>
+        <td<?php echo $class;?>>
+            <?php echo $josDemiejournee['JosDemiejournee']['REMARQUES']; ?>
+        </td>
+
+    <td class="actions">
+            <?php echo $html->link(__('View', true), array('action'=>'view', $josDemiejournee['JosDemiejournee']['id'])); ?>
+            <?php echo $html->link(__('Edit', true), array('action'=>'edit', $josDemiejournee['JosDemiejournee']['id'])); ?>
+            <?php echo $html->link(__('Delete', true), array('action'=>'delete', $josDemiejournee['JosDemiejournee']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $josDemiejournee['JosDemiejournee']['id'])); ?>
+        </td>
+
 
 	</tr>
 <?php 
@@ -86,9 +99,4 @@ endforeach; ?>
  | 	<?php echo $paginator->numbers();?>
 	<?php echo $paginator->next(__('next', true).' >>', array(), null, array('class' => 'disabled'));?>
 </div>
-<div class="actions">
-	<h3><?php __('Actions'); ?></h3>
-	<ul>
-		<li><?php echo $this->Html->link(__('Nouvelle demi-journée \(entrée manuelle\))', true), array('action' => 'add')); ?></li>
-	</ul>
-</div>
+

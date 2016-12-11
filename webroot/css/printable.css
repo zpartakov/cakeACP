@@ -1,0 +1,49 @@
+/* PRINT CSS */
+
+/** General Style Info **/
+body {
+	font-family: "frutiger linotype", "lucida grande", "verdana", sans-serif;
+	font-size: 13px;
+	margin-top: 2cm;
+	margin-right: 2cm;
+	margin-bottom: 1.5cm;
+	margin-left: 2cm
+}
+
+
+td {
+	vertical-align: top;
+	padding: 10px;
+}
+p {
+text-align: justify;
+width: 90%;
+}  
+.altrow {
+	background-color: lightyellow;
+}
+
+.tdm {
+    -webkit-column-count: 3; /* Chrome, Safari, Opera */
+    -moz-column-count: 3; /* Firefox */
+    column-count: 3;
+} 
+
+.titre {
+font-style: italic;
+font-weight: bold;
+}
+
+h1, h2 {
+	margin-bottom: 2em;
+}
+
+h3 {
+	/* les niveaux de titre h3 = titre des légumes imposent un saut de page */
+	page-break-before:always;
+}
+
+.illustration  {
+width: 250px;
+}
+

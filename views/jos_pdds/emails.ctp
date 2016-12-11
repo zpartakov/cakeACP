@@ -11,10 +11,13 @@ echo $this->pageTitle
 <?php
 $i = 0; $x="";
 foreach ($josPdds as $josPdd):
-if(strlen($josPdd['JosPdd']['mail'])>0) {
-$x.=  $josPdd['JosPdd']['mail'];
-$x.=  "\n";  
-}
+			#$x.= $josPdd['JosPdd']['PDDINo'] .";"; 
+			#$x.= $josPdd['JosPdd']['PDDTexte']; 
+			#$x.=  " <";
+		 $x.=  $josPdd['JosPdd']['PDDEmail'];
+		 #$x.=  ">";
+		 $x.=  "\n";  
+		 
 endforeach; 
 //echo nl2br(utf8_decode(htmlentities($x)));
 echo nl2br($x);
