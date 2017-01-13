@@ -1,4 +1,4 @@
-# cakeACP                                    
+# cakeACPv1                                    
 [![cakeACP](//radeff.red/pics/acp/cakephpAcp.png)](cakeACP)
 
 ## Français
@@ -22,8 +22,12 @@ Software for administration of a contractual of a contract farming organisation
 - a eCommerce WebShop
 - a global intranet admin tool (CakePHP).
 
-## Téléchargement/Download
-https://gitlab.com/zpartakov/cakeACP
+## NewVersion
+This package is no longer maintained
+
+See the new repo (cakePhp3) a gitlab
+
+https://gitlab.com/zpartakov/facturAcp/
 
 ## Required 
 - Apache2 http://apache.org/
@@ -41,6 +45,6 @@ https://gitlab.com/zpartakov/cakeACP
 # @package cakeACP                                                   #
 # @version $Id: 1.0.1                                               #
 # @author Fred Radeff fradeff@akademia.ch                           #
-# @copyright (c) 2017 Fred Radeff, www.radeff.red                   #
+# @copyright (c) 2010 Fred Radeff, www.radeff.red                   #
 # @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later #
 #####################################################################
