@@ -1,4 +1,4 @@
-# cakeACPv1                                    
+# cakeACP                                 
 [![cakeACP](//radeff.red/pics/acp/cakephpAcp.png)](cakeACP)
 
 ## Français
@@ -25,9 +25,9 @@ Software for administration of a contractual of a contract farming organisation
 ## NewVersion
 This package is no longer maintained
 
-See the new repo (cakePhp3) a gitlab
+See the new repo (cakeACP) a gitlab
 
-https://gitlab.com/zpartakov/facturAcp/
+https://gitlab.com/zpartakov/cakeACP/
 
 ## Required 
 - Apache2 http://apache.org/
